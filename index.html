@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMES Arts — Travel &amp; Atmosphere Photography, The Hague</title>
+<meta name="description" content="EMES Arts — travel and atmosphere photography by Michal Siemczyk, based in The Hague, Netherlands. Work, story, and connect.">
+<link rel="canonical" href="https://emesarts.com/">
+<link rel="preload" as="video" href="MEDIA/heroemes.mp4">
+
+<link rel="icon" type="image/png" sizes="32x32" href="MEDIA/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="MEDIA/favicon-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     TOKENS — white/gallery-wall chrome, dark hero + about only
+     ============================================================ */
+  :root{
+    --c-bg:        #ffffff;
+    --c-bg-alt:    #f4f4f5;
+    --c-ink:       #141516;
+    --c-ink-dim:   #55585c;
+    --c-ink-faint: #8a8d90;
+    --c-line:      #e7e7e8;
+    --c-line-soft: #efefef;
+    --c-accent:    #33474f; /* used sparingly: active tab, focus, hover */
+
+    /* hero + about-visual stay dark — night/event footage + editorial portrait */
+    --c-dark-overlay: rgba(6,7,8,.55);
+    --c-dark-overlay-strong: rgba(4,5,6,.82);
+
+    --f-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --f-sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    --nav-h: 74px;
+    --gutter: clamp(20px, 4vw, 56px);
+    --max-w: 2400px;
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  *, *::before, *::after{ box-sizing: border-box; }
+  html{ background: var(--c-bg); scroll-behavior: smooth; }
+  body{
+    margin:0; background: var(--c-bg); color: var(--c-ink);
+    font-family: var(--f-sans); font-size: 16px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  img,video{ display:block; max-width:100%; }
+  a{ color: inherit; text-decoration: none; }
+  ul{ list-style:none; margin:0; padding:0; }
+  h1,h2,h3,p{ margin:0; }
+  button{ font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+  ::selection{ background: var(--c-accent); color: #fff; }
+  :focus-visible{ outline: 1px solid var(--c-accent); outline-offset: 3px; }
+
+  .skip-link{
+    position:absolute; left:-999px; top:auto;
+    background: var(--c-ink); color: #fff; padding: 12px 18px; z-index: 200;
+    font-size: .85rem; letter-spacing:.04em;
+  }
+  .skip-link:focus{ left: var(--gutter); top: 16px; }
+
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; overflow:hidden;
+    clip:rect(0 0 0 0); white-space:nowrap; border:0; padding:0; margin:-1px;
+  }
+
+  .section-title{
+    font-family: var(--f-serif); font-weight: 400;
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  }
+
+  section{ scroll-margin-top: var(--nav-h); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *, *::before, *::after{
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  /* ============================================================
+     NAVIGATION — white, hairline border, wordmark logo centered
+     ============================================================ */
+  .site-nav{
+    position: fixed; top:0; left:0; right:0; z-index: 100;
+    height: var(--nav-h);
+    display:grid; grid-template-columns: 1fr auto 1fr; align-items:center;
+    padding: 0 var(--gutter);
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .site-nav.is-scrolled{
+    border-bottom-color: var(--c-line);
+    box-shadow: 0 8px 24px -18px rgba(0,0,0,.35);
+  }
+  .nav-links{ display:flex; gap: clamp(18px, 2.2vw, 34px); }
+  .nav-links a{
+    font-size: .8rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--c-ink-dim);
+    padding: 4px 2px; border-bottom: 1px solid transparent;
+    transition: color .25s var(--ease), border-color .25s var(--ease);
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{ color: var(--c-ink); border-bottom-color: var(--c-ink-faint); }
+  .nav-logo{ justify-self:center; display:flex; align-items:center; }
+  .nav-logo img{ height: 22px; width:auto; }
+  .nav-social{ justify-self:end; display:flex; gap:16px; align-items:center; }
+  .nav-social a{ color: var(--c-ink-dim); transition: color .25s var(--ease); }
+  .nav-social a:hover, .nav-social a:focus-visible{ color: var(--c-ink); }
+  .nav-social svg{ width:17px; height:17px; display:block; }
+
+  .nav-toggle{ display:none; width: 32px; height: 32px; position: relative; justify-self:end; }
+  .nav-toggle span{
+    position:absolute; left: 5px; right:5px; height:1px; background: var(--c-ink);
+    transition: transform .3s var(--ease), top .3s var(--ease);
+  }
+  .nav-toggle span:nth-child(1){ top: 12px; }
+  .nav-toggle span:nth-child(2){ top: 19px; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){ top:15px; transform: rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){ top:15px; transform: rotate(-45deg); }
+
+  .mobile-menu{
+    position: fixed; inset:0; background: var(--c-bg); z-index: 95;
+    display:flex; flex-direction: column; align-items:center; justify-content:center; gap: 30px;
+    opacity:0; visibility:hidden;
+    transition: opacity .3s var(--ease), visibility 0s linear .3s;
+  }
+  .mobile-menu.is-open{ opacity:1; visibility:visible; transition: opacity .3s var(--ease); }
+  .mobile-menu a{ font-family: var(--f-serif); font-size: 1.7rem; color: var(--c-ink); }
+  .mobile-menu .mm-social{ display:flex; gap:22px; margin-top: 10px; }
+
+  @media (min-width: 720px){ .nav-toggle{ display:none; } }
+  @media (max-width: 719px){
+    .nav-links, .nav-social{ display:none; }
+    .site-nav{ grid-template-columns: auto 1fr auto; }
+    .nav-toggle{ display:block; }
+  }
+
+  /* ============================================================
+     HERO — dark video/image, wordmark logo overlay, minimal text
+     ============================================================ */
+  .hero{
+    position: relative; width: 100%;
+    height: 100vh; height: 100svh; min-height: 560px;
+    overflow: hidden; background: #060708;
+  }
+  .hero-media{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit: cover; object-position: center;
+  }
+  .hero-overlay{
+    position:absolute; inset:0; pointer-events:none;
+    background: linear-gradient(to top, var(--c-dark-overlay-strong) 0%, rgba(6,7,8,.15) 45%, rgba(6,7,8,.32) 100%);
+  }
+  .hero-scroll{
+    position:absolute; left:50%; bottom: 26px; transform: translateX(-50%);
+    display:block; color: rgba(255,255,255,.8);
+    animation: bob 2.4s ease-in-out infinite;
+    transition: color .2s var(--ease);
+  }
+  .hero-scroll:hover, .hero-scroll:focus-visible{ color: #fff; }
+  @keyframes bob{ 0%,100%{ transform: translate(-50%,0); } 50%{ transform: translate(-50%,7px); } }
+  @media (prefers-reduced-motion: reduce){ .hero-scroll{ animation:none; } }
+  .hero-scroll svg{ width:20px; height:20px; }
+
+  /* ============================================================
+     SHARED SECTION SPACING
+     ============================================================ */
+  section:not(.hero){ padding: 30px var(--gutter); }
+  .section-head{ max-width: var(--max-w); margin: 0 auto 30px; }
+  .divider{ max-width: var(--max-w); margin: 0 auto; height:1px; background: var(--c-line); }
+
+  /* ============================================================
+     WORK — filter tabs + always-visible captions + lightbox
+     ============================================================ */
+  .work-tabs{ display:flex; gap: 10px; flex-wrap:wrap; margin-top: 16px; }
+  .work-tab{
+    font-size: .74rem; letter-spacing: .1em; text-transform: uppercase;
+    padding: 8px 16px; border: 1px solid var(--c-line); border-radius: 999px;
+    color: var(--c-ink-dim);
+    transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+  }
+  .work-tab:hover{ border-color: var(--c-ink-faint); color: var(--c-ink); }
+  .work-tab[aria-pressed="true"]{ background: var(--c-ink); border-color: var(--c-ink); color: #fff; }
+
+  /* True masonry via CSS multi-column, since photos will be different sizes
+     and rearranged over time — each image keeps its own natural proportions
+  /* Mosaic grid: 4 cols on desktop, 2 on tablet, 1 on mobile.
+     Horizontal (wide) photos span 2 columns, vertical (tall) take 1.
+     dense flow fills any gaps automatically. */
+  .work-grid{
+    max-width: var(--max-w); margin: 34px auto 0;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-flow: dense;
+    align-items: start;
+    gap: clamp(10px, 1.2vw, 20px);
+  }
+  @media (min-width: 720px){ 
+    .work-grid{ grid-template-columns: repeat(2, 1fr); } 
+    .w-wide { grid-column: span 2; }
+  }
+  @media (min-width: 1100px){
+    .work-grid{ grid-template-columns: repeat(4, 1fr); }
+    /* wide spans 2 of 4 cols — leaves room for 2 talls beside it */
+  }
+
+  .w-item{
+    position:relative; width:100%;
+    background: var(--c-bg-alt); border: 1px solid var(--c-line-soft);
+  }
+  .w-item.is-hidden{ display:none; }
+  .w-figure{ overflow:hidden; line-height:0; }
+  .w-figure img{ width:100%; height:auto; display:block; transition: transform .7s var(--ease); }
+  .w-item:hover .w-figure img{ transform: scale(1.02); }
+
+  .w-caption{ padding: 12px 16px 14px; border-top: 1px solid var(--c-line-soft); background: #e5e5e7; }
+  .w-caption.is-empty{ display:none; }
+  .w-caption .w-title{
+    display:block; font-size: .82rem; letter-spacing: .04em; text-transform: uppercase; color: var(--c-ink);
+  }
+  .w-caption .w-location{
+    display:block; font-size: .74rem; color: var(--c-ink-faint); margin-top: 2px;
+  }
+  .w-caption .w-title + .w-location{ margin-top: 4px; }
+
+  .w-item button.w-open{ position:absolute; inset:0; width:100%; height:100%; background: transparent; padding:0; }
+  .w-item button.w-open span{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+
+  .reveal{ opacity:0; transform: translateY(16px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.is-visible{ opacity:1; transform: translateY(0); }
+
+  /* Lightbox */
+  .lightbox{
+    position: fixed; inset:0; z-index: 200; background: rgba(6,7,8,.94);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; visibility:hidden;
+    transition: opacity .25s var(--ease), visibility 0s linear .25s;
+  }
+  .lightbox.is-open{ opacity:1; visibility:visible; transition: opacity .25s var(--ease); }
+  .lightbox-figure{ max-width: min(92vw, 1200px); max-height: 84vh; text-align:center; }
+  .lightbox-figure img{ max-width:100%; max-height: 78vh; margin: 0 auto; object-fit: contain; }
+  .lightbox-cap{ color: rgba(255,255,255,.82); font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; margin-top: 14px; }
+  .lightbox-cap .lb-location{ color: rgba(255,255,255,.55); text-transform:none; letter-spacing: normal; margin-left: 8px; }
+  .lightbox-desc{
+    color: rgba(255,255,255,.72); font-size: .88rem; letter-spacing: normal; text-transform:none;
+    max-width: 560px; margin: 10px auto 0; line-height: 1.6;
+  }
+  .lightbox-close, .lightbox-prev, .lightbox-next{ position:absolute; color: #fff; padding: 10px; }
+  .lightbox-close{ top: 20px; right: 20px; }
+  .lightbox-prev{ left: clamp(8px, 2vw, 28px); top:50%; transform: translateY(-50%); }
+  .lightbox-next{ right: clamp(8px, 2vw, 28px); top:50%; transform: translateY(-50%); }
+  .lightbox-close svg, .lightbox-prev svg, .lightbox-next svg{ width:26px; height:26px; }
+
+  /* ============================================================
+     ABOUT — portrait as visual anchor, text integrated over it
+     ============================================================ */
+  .about-frame{ max-width: var(--max-w); margin: 0 auto; }
+  #about{ padding: 30px var(--gutter); }
+  .about-visual{
+    position:relative; overflow:hidden; background:#0a0b0c;
+    height: clamp(440px, 62vw, 680px);
+  }
+  .about-visual img{ width:100%; height:100%; object-fit:cover; object-position: center 30%; }
+  .about-visual .a-overlay{
+    position:absolute; inset:0; pointer-events:none;
+    background: linear-gradient(to top, rgba(5,6,7,.84) 0%, rgba(5,6,7,.18) 42%, rgba(5,6,7,.04) 68%);
+  }
+  .about-text{
+    position:absolute; left: clamp(20px, 4vw, 56px); bottom: clamp(24px, 5vw, 52px);
+    max-width: 460px;
+    background: rgba(8,9,10,.42);
+    backdrop-filter: blur(6px);
+    padding: clamp(20px, 3vw, 32px);
+    color:#fff;
+  }
+  .about-text h2{
+    font-family: var(--f-serif); font-weight:400;
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem); margin-bottom: 16px;
+  }
+  .about-text p{ font-size: .96rem; color: rgba(255,255,255,.86); line-height: 1.7; }
+  .about-text p + p{ margin-top: 12px; }
+  .about-text .a-sign{
+    margin-top: 18px; font-family: var(--f-serif); font-style: italic;
+    font-size: 1.02rem; color: rgba(255,255,255,.75);
+  }
+
+  @media (max-width: 640px){
+    .about-visual{ height: clamp(420px, 135vw, 560px); }
+    .about-text{ max-width: calc(100% - 2 * var(--gutter)); }
+  }
+
+  /* ============================================================
+     CONNECT
+     ============================================================ */
+  .connect{ text-align:center; padding:30px var(--gutter) !important; }
+  .connect-inner{ max-width: 720px; margin: 0 auto; }
+  .connect .section-title{ color: var(--c-ink); margin-bottom: 16px !important; }
+  .c-invite{
+    margin: 0 auto;
+    font-family: var(--f-serif); font-weight: 400;
+    font-size: clamp(.92rem, 1.5vw, 1.05rem); line-height: 1.6;
+    color: #777b80;
+  }
+  @media (min-width: 700px){
+    .c-invite{ white-space: nowrap; }
+  }
+  .connect-links{
+    margin: 24px auto 0; width: min(100%, 460px);
+    display:flex; justify-content:center; align-items:center; gap: 14px;
+  }
+  .connect-links a{
+    font-family: var(--f-serif); font-size: clamp(.9rem, 1.3vw, 1rem); font-weight: 400;
+    letter-spacing: normal; text-transform: none; color: var(--c-ink-faint);
+    padding-bottom: 3px; border-bottom: 1px solid transparent;
+    transition: color .25s var(--ease), border-color .25s var(--ease);
+  }
+  .connect-links a:hover, .connect-links a:focus-visible{ color: var(--c-ink); border-color: var(--c-ink-faint); }
+  .connect-links .c-divider{ color: var(--c-ink-faint); font-size: .85rem; }
+
+  /* Social/contact icons in the navigation — deliberately larger than v10. */
+  .nav-social{ gap: 20px; }
+  .nav-social svg{ width: 24px; height: 24px; display:block; }
+  .mm-social a svg{ width: 24px; height: 24px; }
+  .mm-social{ gap: 24px; }
+
+  /* Narrower, slightly darker divider used only between Connect and the
+     footer -- capped to ~70% of the contact-links row's own max width
+     (460px * .7 = 322px), distinct from the full-width .divider used
+     between Work/About and About/Connect. */
+  .divider-tight{
+    max-width: 322px; margin: 0 auto; height: 1px; background: #d2d2d4;
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  .site-footer{ padding: 44px var(--gutter) 48px; border-top: 1px solid var(--c-line); text-align:center; }
+  .footer-inner{ max-width: 620px; margin: 0 auto; }
+  .footer-inner p{ margin: 0; }
+  .footer-inner p + p{ margin-top: 8px; }
+  .f-brand{ font-family: var(--f-serif); font-size: .92rem; color: var(--c-ink); }
+  .f-legal, .f-email, .f-policy{ font-size: .74rem; color: var(--c-ink-faint); }
+  .f-email a, .f-policy a{
+    color: var(--c-ink-faint); border-bottom: 1px solid transparent;
+    transition: color .25s var(--ease), border-color .25s var(--ease);
+  }
+  .f-email a:hover, .f-email a:focus-visible,
+  .f-policy a:hover, .f-policy a:focus-visible{ color: var(--c-ink); border-color: var(--c-ink-faint); }
+  .f-copy{ font-size: .7rem; color: var(--c-ink-faint); margin-top: 16px !important; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ================= NAVIGATION ================= -->
+<header class="site-nav" id="siteNav">
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#work">Work</a>
+    <a href="#about">Who is EMES?</a>
+    <a href="#connect">Connect</a>
+  </nav>
+
+  <a class="nav-logo" href="#top" aria-label="EMES Arts — home">
+    <img src="MEDIA/emes-logo-black.png" alt="EMES Arts">
+  </a>
+
+  <div class="nav-social" aria-label="Social">
+    <a href="https://instagram.com/the_emes" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="https://www.behance.net/emesarts" target="_blank" rel="noopener" aria-label="Behance">
+      <!-- Behance icon: Font Awesome Free v6.7.2 by @fontawesome - fontawesome.com. License - fontawesome.com/license/free -->
+      <svg viewBox="0 0 576 512" fill="currentColor" width="24" height="24"><path d="M232 237.2c31.8-15.2 48.4-38.2 48.4-74 0-70.6-52.6-87.8-113.3-87.8H0v354.4h171.8c64.4 0 124.9-30.9 124.9-102.9 0-44.5-21.1-77.4-64.7-89.7zM77.9 135.9H151c28.1 0 53.4 7.9 53.4 40.5 0 30.1-19.7 42.2-47.5 42.2h-79v-82.7zm83.3 233.7H77.9V272h84.9c34.3 0 56 14.3 56 50.6 0 35.8-25.9 47-57.6 47zm358.5-240.7H376V94h143.7v34.9zM576 305.2c0-75.9-44.4-139.2-124.9-139.2-78.2 0-131.3 58.8-131.3 135.8 0 79.9 50.3 134.7 131.3 134.7 61.3 0 101-27.6 120.1-86.3H509c-6.7 21.9-34.3 33.5-55.7 33.5-41.3 0-63-24.2-63-65.3h185.1c.3-4.2.6-8.7.6-13.2zM390.4 274c2.3-33.7 24.7-54.8 58.5-54.8 35.4 0 53.2 20.8 56.2 54.8H390.4z"/></svg>
+    </a>
+    <a href="mailto:emessedarts@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+    </a>
+  </div>
+
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+    <span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#work" data-menu-link>Work</a>
+  <a href="#about" data-menu-link>Who is EMES?</a>
+  <a href="#connect" data-menu-link>Connect</a>
+  <div class="mm-social">
+    <a href="https://instagram.com/the_emes" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/></svg>
+    </a>
+    <a href="https://www.behance.net/emesarts" target="_blank" rel="noopener" aria-label="Behance">
+      <svg viewBox="0 0 576 512" fill="currentColor" width="24" height="24"><path d="M232 237.2c31.8-15.2 48.4-38.2 48.4-74 0-70.6-52.6-87.8-113.3-87.8H0v354.4h171.8c64.4 0 124.9-30.9 124.9-102.9 0-44.5-21.1-77.4-64.7-89.7zM77.9 135.9H151c28.1 0 53.4 7.9 53.4 40.5 0 30.1-19.7 42.2-47.5 42.2h-79v-82.7zm83.3 233.7H77.9V272h84.9c34.3 0 56 14.3 56 50.6 0 35.8-25.9 47-57.6 47zm358.5-240.7H376V94h143.7v34.9zM576 305.2c0-75.9-44.4-139.2-124.9-139.2-78.2 0-131.3 58.8-131.3 135.8 0 79.9 50.3 134.7 131.3 134.7 61.3 0 101-27.6 120.1-86.3H509c-6.7 21.9-34.3 33.5-55.7 33.5-41.3 0-63-24.2-63-65.3h185.1c.3-4.2.6-8.7.6-13.2zM390.4 274c2.3-33.7 24.7-54.8 58.5-54.8 35.4 0 53.2 20.8 56.2 54.8H390.4z"/></svg>
+    </a>
+    <a href="mailto:emessedarts@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+    </a>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="top">
+    <video class="hero-media" id="heroVideo" src="MEDIA/heroemes.mp4"
+           autoplay muted loop playsinline preload="auto"
+           disablepictureinpicture disableremoteplayback
+           aria-label="EMES Arts visual introduction"></video>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <!-- visually hidden — page still needs one real h1 for SEO/accessibility;
+         the visible EMES Arts branding now lives in the video itself -->
+    <h1 class="visually-hidden">EMES Arts — Travel &amp; Atmosphere Photography, The Hague</h1>
+
+    <a href="#work" class="hero-scroll" aria-label="Scroll to work section">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
+  </section>
+
+  <!-- ================= WORK ================= -->
+  <section id="work" aria-labelledby="work-heading">
+    <div class="section-head">
+      <h2 id="work-heading" class="section-title">Work</h2>
+      <div class="work-tabs" id="workTabs" role="group" aria-label="Filter work by category"><!-- populated by script --></div>
+    </div>
+    <div class="work-grid" id="workGrid"><!-- populated by script --></div>
+  </section>
+
+  <div class="divider" role="presentation"></div>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about" aria-labelledby="about-heading">
+    <div class="about-frame">
+      <figure class="about-visual reveal">
+        <img src="MEDIA/portrait.jpg" alt="Portrait of Michal Siemczyk, EMES Arts" loading="lazy" width="2400" height="1600">
+        <div class="a-overlay" aria-hidden="true"></div>
+        <div class="about-text">
+          <h2 id="about-heading">Who is EMES?</h2>
+          <p>I am Michal Siemczyk. Photography has been part of my life since 2015. Street, night, travel, and events are my natural environments.</p>
+          <p>What started as curiosity slowly became a way of seeing and interpreting the world. Capturing those moments has become something I genuinely need — without photography, something would feel missing.</p>
+          <p class="a-sign">— EMES Arts</p>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <div class="divider" role="presentation"></div>
+
+  <!-- ================= CONNECT ================= -->
+  <section class="connect" id="connect" aria-labelledby="connect-heading">
+    <div class="connect-inner">
+      <h2 id="connect-heading" class="section-title">Connect</h2>
+      <p class="c-invite">For collaborations, photography, or simply to talk — check the links below:</p>
+      <div class="connect-links">
+        <a href="mailto:emessedarts@gmail.com">Let&#39;s create</a>
+        <span class="c-divider" aria-hidden="true">&middot;</span>
+        <a href="https://www.behance.net/emesarts" target="_blank" rel="noopener">Behance</a>
+        <span class="c-divider" aria-hidden="true">&middot;</span>
+        <a href="https://instagram.com/the_emes" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-tight" role="presentation"></div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="f-brand">EMES Arts by Michal Siemczyk</p>
+    <p class="f-email"><a href="mailto:emessedarts@gmail.com">emessedarts@gmail.com</a></p>
+    <p class="f-legal">KVK: 95916660 &middot; VAT ID: NL005178433B57</p>
+    <p class="f-copy">&copy; 2026 EMES Arts &middot; The Hague, Netherlands</p>
+    <p class="f-policy"><a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a></p>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lightbox-close" id="lbClose" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 5l14 14M19 5L5 19"/></svg>
+  </button>
+  <button class="lightbox-prev" id="lbPrev" aria-label="Previous photo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <div class="lightbox-figure">
+    <img id="lbImage" src="" alt="">
+    <div class="lightbox-cap" id="lbCaption"></div>
+    <div class="lightbox-desc" id="lbDesc"></div>
+  </div>
+  <button class="lightbox-next" id="lbNext" aria-label="Next photo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     VIDEO CONFIGURATION
+     The hero is the local MEDIA/heroemes.mp4 video (40MB, swapped in for the
+     original 65MB IGemes.mp4 for faster load). No photographic fallback is used.
+     ============================================================ */
+  var VIDEO_CONFIG = {
+    HERO_VIDEO: "MEDIA/heroemes.mp4"
+  };
+
+  /* ============================================================
+     IMAGE CONFIGURATION
+     Curated selection — one strongest photograph per shoot by
+     default (per EMES Arts curation principle). Each work item uses its numbered file in MEDIA/. Categories are
+     fixed to Travel / Events / People — do not add
+     "Portraits" as a separate category, it belongs under People.
+
+     Per-item fields:
+       title       optional — only show it when it's actually meaningful
+                   (a real name for the piece, not a generic placeholder).
+                   Leave null to show no title, just location.
+       location    optional — shown under the photo by default. Leave
+                   null for shots where location isn't relevant (studio,
+                   close-ups, etc).
+       description optional — NEVER shown in the grid. Only appears in
+                   the lightbox (individual image view), and only if set.
+       ph          placeholder-shape hint (tall/wide/square/full) — only
+                   affects the SIZE of the generated placeholder box so
+                   the wall looks varied before real photos land. Has no
+                   effect once a real `src` is supplied — real photos
+                   render at their own natural size/aspect.
+
+     If you know a real photo's exact pixel dimensions, add width/height
+     next to its src to avoid layout shift on load — omitted here since
+     these are still placeholders.
+     ============================================================ */
+  var IMAGE_CONFIG = {
+    WORK_ITEMS: [
+
+  // Travel & Street — merged into Travel per current category structure
+  // ph: "tall" = portrait/vertical (1 column), ph: "wide" = landscape/horizontal (spans 2 columns)
+
+  { src: "MEDIA/person-running-tree-fog-madeira-portugal.jpg", alt: "A silhouette of a person running up a hill toward a large two-trunk tree in dense fog.", title: null, location: "Madeira, Portugal", category: "travel", ph: "tall" },
+
+  { src: "MEDIA/sailing-ships-harbor-amsterdam-netherlands.jpg", alt: "A view of a harbor with tall sailing ships and small boats under a cloudy sky.", title: null, location: "Amsterdam, Netherlands", category: "travel", ph: "tall" },
+
+  { src: "MEDIA/fennec-fox-seoul-south-korea.jpg", alt: "A Fennec fox sitting on a wooden plank in moody lighting.", title: null, location: "Seoul, South Korea", category: "travel", ph: "wide" },
+
+  { src: "MEDIA/pink-hillside-building-tenerife-spain.jpg", alt: "A bright pink building on a hillside overlooking the ocean and mist.", title: null, location: "Tenerife, Spain", category: "travel", ph: "tall" },
+
+  { src: "MEDIA/seoul-street-overhead-wires-motorcyclist.jpg", alt: "A steep, vibrant street in Korea with a dense tangle of overhead wires and a motorcyclist.", title: null, location: "Seoul, South Korea", category: "travel", ph: "tall" },
+
+  { src: "MEDIA/mountain-village-coast-tenerife-spain.jpg", alt: "A white village nestled on a steep, rocky hillside overlooking a rugged, mountainous coast.", title: null, location: "Tenerife, Spain", category: "travel", ph: "wide" },
+
+  { src: "MEDIA/porto-coastal-city-river-portugal.jpg", alt: "A vibrant coastal city with orange-roofed buildings terraced down to a deep blue river.", title: null, location: "Porto, Portugal", category: "travel", ph: "wide" },
+
+  { src: "MEDIA/korean-pavilion-stone-pagoda-night-seoul.jpg", alt: "An ornate, multi-tiered Korean pavilion and stone pagoda illuminated at night.", title: null, location: "Seoul, South Korea", category: "travel", ph: "tall" },
+
+  { src: "MEDIA/neon-night-street-seoul-korea.jpg", alt: "A bustling nighttime street in Korea with bright neon signs and a clock tower structure.", title: null, location: "Seoul, South Korea", category: "travel", ph: "wide" },
+
+
+  // Events
+
+  { src: "MEDIA/vtss-b2b-sept-warsaw-club-dj.jpg", alt: "A DJ in a dark blazer and face mask performing on stage in a smoky club.", title: null, location: null, category: "events", ph: "wide" },
+
+  { src: "MEDIA/woman-pink-dress-moving-crowd.jpg", alt: "A woman in a shiny pink dress standing still in the middle of a moving, blurred crowd.", title: null, location: null, category: "events", ph: "wide" },
+
+  { src: "MEDIA/club-smoke-spotlights-decorative-masks.jpg", alt: "A dark club scene with spotlights shining through smoke and hanging decorative masks.", title: null, location: null, category: "events", ph: "wide" },
+
+  { src: "MEDIA/tomorrowland-crowd-projection-screen.jpg", alt: "A large crowd at a concert with a massive projection screen and a bright beam of light.", title: null, location: null, category: "events", ph: "tall" },
+
+  { src: "MEDIA/dj-performing-colorful-party-tent.jpg", alt: "A smiling DJ in a red shirt performing behind a mixing board in a colorful tent.", title: null, location: null, category: "events", ph: "wide" },
+
+  { src: "MEDIA/underground-party-dancing-green-braids.jpg", alt: "People dancing at an underground party, focusing on a person with green braided hair.", title: null, location: null, category: "events", ph: "wide" },
+
+  { src: "MEDIA/outdoor-party-crowd-bear-ears-hat.jpg", alt: "A crowd at an outdoor daytime party; a person wears a brown hat with bear ears.", title: null, location: null, category: "events", ph: "wide" },
+
+  { src: "MEDIA/red-lit-club-decorative-masks.jpg", alt: "A moody scene in a club with red lighting and hanging decorative masks illuminated by a spotlight.", title: null, location: null, category: "events", ph: "tall" },
+
+
+  // People — includes portraiture, no separate Portraits category
+
+  { src: "MEDIA/warrior-armor-sword-orange-smoke-portrait.jpg", alt: "A portrait of a person in warrior armor holding a large sword against a smoky orange background.", title: null, location: null, category: "people", ph: "wide" },
+
+  { src: "MEDIA/woman-sunglasses-neon-portrait.jpg", alt: "A young woman wearing round sunglasses and a black crop top in a futuristic neon-lit setting.", title: null, location: null, category: "people", ph: "tall" },
+
+  { src: "MEDIA/woman-yellow-ford-thunderbird-portrait.jpg", alt: "A woman in a shiny dress sitting on the ground next to a classic yellow Ford Thunderbird.", title: null, location: null, category: "people", ph: "wide" },
+
+  { src: "MEDIA/two-people-masks-escalator.jpg", alt: "Two young people wearing face masks and dark jackets riding an escalator in a bright station.", title: null, location: null, category: "people", ph: "tall" },
+
+  { src: "MEDIA/leather-cap-red-halo-portrait.jpg", alt: "A portrait of a person wearing a black leather cap obscuring their eyes, with a glowing red halo.", title: null, location: null, category: "people", ph: "tall" },
+
+  { src: "MEDIA/woman-leather-harness-pink-mask.jpg", alt: "A woman in a black leather harness dress, a pink face mask, and pink heels posing inside a metal shipping container.", title: null, location: null, category: "people", ph: "wide" },
+
+  { src: "MEDIA/person-red-puffer-glass-buildings.jpg", alt: "A view from behind of a person with grey hair in a bright red puffer jacket, standing between tall modern glass buildings.", title: null, location: null, category: "people", ph: "tall" },
+
+  { src: "MEDIA/person-red-mask-metallic-structure.jpg", alt: "A person in a white mesh top and red mask leaning backwards over a metallic structure in an urban space.", title: null, location: null, category: "people", ph: "wide" }
+  ]
+  };
+
+
+
+   var CATEGORY_ORDER  = ["all", "travel", "events", "people"];
+  var CATEGORY_LABELS = { all: "All", travel: "Travel", events: "Events", people: "People" };
+
+  /* ---- placeholder generator ---- */
+  function placeholderSrc(label, w, h, theme){
+    w = w || 1600; h = h || 1200;
+    var bg  = theme === "dark" ? "#12151a" : "#eceeef";
+    var line= theme === "dark" ? "#3a4045" : "#c9cccd";
+    var fg  = theme === "dark" ? "#7c8489" : "#6b7075";
+    var svg =
+      "<svg xmlns='http://www.w3.org/2000/svg' width='" + w + "' height='" + h + "' viewBox='0 0 " + w + " " + h + "'>" +
+      "<rect width='100%' height='100%' fill='" + bg + "'/>" +
+      "<rect x='0.5' y='0.5' width='" + (w-1) + "' height='" + (h-1) + "' fill='none' stroke='" + line + "' stroke-width='1'/>" +
+      "<line x1='0' y1='0' x2='" + w + "' y2='" + h + "' stroke='" + line + "' stroke-width='1'/>" +
+      "<line x1='" + w + "' y1='0' x2='0' y2='" + h + "' stroke='" + line + "' stroke-width='1'/>" +
+      "<text x='50%' y='50%' font-family='Arial,sans-serif' font-size='" + Math.max(12, Math.round(w*0.028)) + "' " +
+      "letter-spacing='2' fill='" + fg + "' text-anchor='middle' dominant-baseline='middle'>" + escapeXML(label) + "</text>" +
+      "</svg>";
+    return "data:image/svg+xml," + encodeURIComponent(svg);
+  }
+  function escapeXML(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  /* ---- Hero: deterministic local video only ---- */
+  var heroVideo = document.getElementById("heroVideo");
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Diagnostic only -- does not fix a missing/misconfigured file, but makes the
+  // actual failure reason visible in the browser console (F12 -> Console) instead
+  // of just "it's black". error.code: 1=MEDIA_ERR_ABORTED, 2=MEDIA_ERR_NETWORK
+  // (404/host issue), 3=MEDIA_ERR_DECODE (corrupt/unsupported encode),
+  // 4=MEDIA_ERR_SRC_NOT_SUPPORTED (wrong path, wrong MIME type, or a codec the
+  // browser can't play at all).
+  heroVideo.addEventListener("error", function(){
+    var err = heroVideo.error;
+    console.error(
+      "[EMES hero video] failed to load " + heroVideo.currentSrc,
+      err ? ("MediaError code " + err.code) : "(no MediaError object available)"
+    );
+  });
+
+  if (prefersReducedMotion){
+    heroVideo.pause();
+  } else {
+    // Try immediate autoplay (works on a web server and most browsers).
+    // If the browser blocks it (common when opening via file://), we retry
+    // on the very first user interaction — completely invisible to the visitor.
+    var playPromise = heroVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function() {
+        var unlockPlay = function() {
+          heroVideo.play().catch(function(){});
+          document.removeEventListener("click",      unlockPlay);
+          document.removeEventListener("touchstart", unlockPlay);
+          document.removeEventListener("keydown",    unlockPlay);
+        };
+        document.addEventListener("click",      unlockPlay, { once: true });
+        document.addEventListener("touchstart", unlockPlay, { once: true });
+        document.addEventListener("keydown",    unlockPlay, { once: true });
+      });
+    }
+  }
+
+  /* ---- Work grid + filter tabs ---- */
+  var workGrid = document.getElementById("workGrid");
+  var workTabs = document.getElementById("workTabs");
+  var items = IMAGE_CONFIG.WORK_ITEMS;
+
+  var tabFrag = document.createDocumentFragment();
+  CATEGORY_ORDER.forEach(function(cat, i){
+    var btn = document.createElement("button");
+    btn.className = "work-tab";
+    btn.type = "button";
+    btn.textContent = CATEGORY_LABELS[cat] || cat;
+    btn.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+    btn.dataset.cat = cat;
+    tabFrag.appendChild(btn);
+  });
+  workTabs.appendChild(tabFrag);
+
+  // placeholder-only intrinsic sizes, purely so the wall looks varied before
+  // real photos land — has zero effect once a real src is supplied.
+  var PH_DIMS = { tall: [1400, 1750], wide: [1800, 1200], square: [1600, 1600], full: [1920, 1080] };
+
+  var gridFrag = document.createDocumentFragment();
+  items.forEach(function(item, i){
+    var el = document.createElement("div");
+    el.className = "w-item reveal";
+    if (item.ph === "wide") {
+      el.className += " w-wide";
+    }
+    el.dataset.cat = item.category;
+    el.dataset.index = i;
+
+    var figure = document.createElement("div");
+    figure.className = "w-figure";
+    var img = document.createElement("img");
+    if (item.src){
+      img.src = item.src;
+      // if you know this photo's real pixel dimensions, set img.width/img.height
+      // here too to avoid layout shift — intentionally omitted for placeholders.
+    } else {
+      var dims = PH_DIMS[item.ph] || PH_DIMS.square;
+      img.src = placeholderSrc(item.title || item.location || ("WORK_ITEMS[" + i + "]"), dims[0], dims[1], "light");
+      img.width = dims[0]; img.height = dims[1];
+    }
+    img.alt = item.alt || item.title || item.location || ("Work " + (i + 1));
+    img.loading = "lazy";
+    figure.appendChild(img);
+
+    var openBtn = document.createElement("button");
+    openBtn.className = "w-open";
+    openBtn.type = "button";
+    openBtn.dataset.index = i;
+    var vh = document.createElement("span");
+    vh.textContent = "Open " + (item.title || item.location || "photo") + " in viewer";
+    openBtn.appendChild(vh);
+    figure.appendChild(openBtn);
+
+    el.appendChild(figure);
+
+    // Caption rules: title only when meaningful (i.e. set at all), location
+    // shown by default when present, category NEVER shown here (filter-only).
+    var hasTitle = !!(item.title && item.title.trim());
+    var hasLocation = !!(item.location && item.location.trim());
+    var cap = document.createElement("div");
+    cap.className = "w-caption" + (hasTitle || hasLocation ? "" : " is-empty");
+    var capHtml = "";
+    if (hasTitle) capHtml += "<span class='w-title'>" + escapeXML(item.title) + "</span>";
+    if (hasLocation) capHtml += "<span class='w-location'>" + escapeXML(item.location) + "</span>";
+    cap.innerHTML = capHtml;
+    el.appendChild(cap);
+
+    gridFrag.appendChild(el);
+  });
+  workGrid.appendChild(gridFrag);
+
+  function applyFilter(cat){
+    workTabs.querySelectorAll(".work-tab").forEach(function(t){
+      t.setAttribute("aria-pressed", t.dataset.cat === cat ? "true" : "false");
+    });
+    workGrid.querySelectorAll(".w-item").forEach(function(el){
+      var show = cat === "all" || el.dataset.cat === cat;
+      el.classList.toggle("is-hidden", !show);
+    });
+  }
+  workTabs.addEventListener("click", function(e){
+    var btn = e.target.closest(".work-tab");
+    if (!btn) return;
+    applyFilter(btn.dataset.cat);
+  });
+
+  /* ---- Lightbox ---- */
+  var lightbox = document.getElementById("lightbox");
+  var lbImage = document.getElementById("lbImage");
+  var lbCaption = document.getElementById("lbCaption");
+  var lbDesc = document.getElementById("lbDesc");
+  var lbClose = document.getElementById("lbClose");
+  var lbPrev = document.getElementById("lbPrev");
+  var lbNext = document.getElementById("lbNext");
+  var lastFocused = null;
+  var currentIndex = -1;
+
+  function visibleIndices(){
+    var out = [];
+    workGrid.querySelectorAll(".w-item").forEach(function(el){
+      if (!el.classList.contains("is-hidden")) out.push(parseInt(el.dataset.index, 10));
+    });
+    return out;
+  }
+
+  function showItem(index){
+    var item = items[index];
+    if (!item) return;
+    currentIndex = index;
+    if (item.src){
+      lbImage.src = item.src;
+    } else {
+      var dims = PH_DIMS[item.ph] || PH_DIMS.square;
+      lbImage.src = placeholderSrc(item.title || item.location || "photo", dims[0], dims[1], "light");
+    }
+    lbImage.alt = item.alt || item.title || item.location || "";
+
+    var hasTitle = !!(item.title && item.title.trim());
+    var hasLocation = !!(item.location && item.location.trim());
+    var capHtml = "";
+    if (hasTitle) capHtml += escapeXML(item.title);
+    if (hasLocation) capHtml += "<span class='lb-location'>" + escapeXML(item.location) + "</span>";
+    lbCaption.innerHTML = capHtml;
+    lbCaption.style.display = (hasTitle || hasLocation) ? "" : "none";
+
+    // Description: individual-image-view only, never shown in the grid.
+    if (item.description && item.description.trim()){
+      lbDesc.textContent = item.description;
+      lbDesc.style.display = "";
+    } else {
+      lbDesc.textContent = "";
+      lbDesc.style.display = "none";
+    }
+  }
+
+  function openLightbox(index){
+    lastFocused = document.activeElement;
+    showItem(index);
+    lightbox.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    lbClose.focus();
+  }
+  function closeLightbox(){
+    lightbox.classList.remove("is-open");
+    document.body.style.overflow = "";
+    if (lastFocused) lastFocused.focus();
+  }
+  function step(dir){
+    var vis = visibleIndices();
+    if (!vis.length) return;
+    var pos = vis.indexOf(currentIndex);
+    if (pos === -1) pos = 0;
+    pos = (pos + dir + vis.length) % vis.length;
+    showItem(vis[pos]);
+  }
+
+  workGrid.addEventListener("click", function(e){
+    var btn = e.target.closest(".w-open");
+    if (!btn) return;
+    openLightbox(parseInt(btn.dataset.index, 10));
+  });
+  lbClose.addEventListener("click", closeLightbox);
+  lbPrev.addEventListener("click", function(){ step(-1); });
+  lbNext.addEventListener("click", function(){ step(1); });
+  lightbox.addEventListener("click", function(e){ if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener("keydown", function(e){
+    if (!lightbox.classList.contains("is-open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") step(-1);
+    if (e.key === "ArrowRight") step(1);
+
+    // Focus trap: keep Tab/Shift+Tab cycling within the lightbox's 3 buttons
+    // (close/prev/next) while it's open, instead of escaping to page content behind it.
+    if (e.key === "Tab"){
+      var focusables = lightbox.querySelectorAll("button");
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first){
+        last.focus(); e.preventDefault();
+      } else if (!e.shiftKey && document.activeElement === last){
+        first.focus(); e.preventDefault();
+      }
+    }
+  });
+
+  /* ============================================================
+     NAV: shadow/border on scroll
+     ============================================================ */
+  var nav = document.getElementById("siteNav");
+  function onScroll(){ nav.classList.toggle("is-scrolled", window.scrollY > 30); }
+  document.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ============================================================
+     MOBILE MENU
+     ============================================================ */
+  var toggle = document.getElementById("navToggle");
+  var menu = document.getElementById("mobileMenu");
+  function openMenu(){
+    menu.classList.add("is-open");
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Close menu");
+    document.body.style.overflow = "hidden";
+    var first = menu.querySelector("a");
+    if (first) first.focus();
+  }
+  function closeMenu(){
+    menu.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Open menu");
+    document.body.style.overflow = "";
+  }
+  toggle.addEventListener("click", function(){
+    toggle.getAttribute("aria-expanded") === "true" ? closeMenu() : openMenu();
+  });
+  menu.querySelectorAll("[data-menu-link]").forEach(function(link){ link.addEventListener("click", closeMenu); });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true"){ closeMenu(); toggle.focus(); }
+  });
+
+  /* ============================================================
+     SCROLL REVEAL
+     ============================================================ */
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){ entry.target.classList.add("is-visible"); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function(el){ el.classList.add("is-visible"); });
+  }
+
+})();
+</script>
+</body>
+</html>
