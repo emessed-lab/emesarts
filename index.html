@@ -150,8 +150,13 @@
      ============================================================ */
   .hero{
     position: relative; width: 100%;
-    height: 100vh; height: 100svh; min-height: 560px;
+    /* Full-bleed on desktop; slightly shorter on mobile so Work is reachable
+       without an extreme scroll. Still strong presence (~85–92svh). */
+    height: 92svh; min-height: 520px; max-height: 100svh;
     overflow: hidden; background: #060708;
+  }
+  @media (min-width: 900px){
+    .hero{ height: 100svh; min-height: 600px; }
   }
   .hero-media{
     position:absolute; inset:0; width:100%; height:100%;
@@ -192,31 +197,28 @@
   .work-tab:hover{ border-color: var(--c-ink-faint); color: var(--c-ink); }
   .work-tab[aria-pressed="true"]{ background: var(--c-ink); border-color: var(--c-ink); color: #fff; }
 
-  /* True masonry via CSS multi-column, since photos will be different sizes
-     and rearranged over time — each image keeps its own natural proportions
-  /* Mosaic grid: 4 cols on desktop, 2 on tablet, 1 on mobile.
-     Horizontal (wide) photos span 2 columns, vertical (tall) take 1.
-     dense flow fills any gaps automatically. */
+  /* True masonry via CSS multi-column.
+     Each photo keeps its natural aspect ratio. Tall images no longer
+     stretch a whole grid row or leave awkward gaps. Columns reflow
+     cleanly when filters hide/show items. */
   .work-grid{
     max-width: var(--max-w); margin: 34px auto 0;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-auto-flow: dense;
-    align-items: start;
-    gap: clamp(16px, 2vw, 32px);
+    column-count: 1;
+    column-gap: clamp(16px, 2vw, 32px);
   }
-  @media (min-width: 720px){ 
-    .work-grid{ grid-template-columns: repeat(2, 1fr); } 
-    .w-wide { grid-column: span 2; }
+  @media (min-width: 720px){
+    .work-grid{ column-count: 2; }
   }
   @media (min-width: 1100px){
-    .work-grid{ grid-template-columns: repeat(4, 1fr); }
-    /* wide spans 2 of 4 cols — leaves room for 2 talls beside it */
+    .work-grid{ column-count: 4; }
   }
 
   .w-item{
     position:relative; width:100%;
+    break-inside: avoid;
+    margin-bottom: clamp(16px, 2vw, 32px);
     background: var(--c-bg-alt); border: 1px solid var(--c-line-soft);
+    display: inline-block; /* helps older browsers keep break-inside */
   }
   .w-item.is-hidden{ display:none; }
   .w-figure{ overflow:hidden; line-height:0; }
@@ -548,9 +550,10 @@
   var IMAGE_CONFIG = {
     WORK_ITEMS: [
 
-  // Reordered for visual rhythm (tall/wide alternate, categories mixed, strong frames early).
+  // Order tuned for visual rhythm under multi-column masonry.
   // Categories: scenery | places | events | people
-  // ph: "tall" = portrait/vertical (1 column), ph: "wide" = landscape/horizontal (spans 2 columns)
+  // ph: "tall" / "wide" kept for placeholder sizing + future use; layout no longer spans.
+  // Tall vertical closer is the Korea pavilion (Amsterdam sail removed).
 
   // Opener + early people so the orange warrior sits higher
   { src: "MEDIA/person-running-tree-fog-madeira-portugal.jpg", alt: "A silhouette of a person running up a hill toward a large two-trunk tree in dense fog.", title: null, location: "Madeira, Portugal", category: "scenery", ph: "tall" },
@@ -565,11 +568,9 @@
 
   { src: "MEDIA/woman-yellow-ford-thunderbird-portrait.jpg", alt: "A woman in a shiny dress sitting on the ground next to a classic yellow Ford Thunderbird.", title: null, location: null, category: "people", ph: "wide" },
 
-  { src: "MEDIA/sailing-ships-harbor-amsterdam-netherlands.jpg", alt: "A view of a harbor with tall sailing ships and small boats under a cloudy sky.", title: null, location: "Amsterdam, Netherlands", category: "places", ph: "tall" },
-
   { src: "MEDIA/red-lit-club-decorative-masks.jpg", alt: "A moody scene in a club with red lighting and hanging decorative masks illuminated by a spotlight.", title: null, location: null, category: "events", ph: "tall" },
 
-  { src: "MEDIA/porto-coastal-city-river-portugal.jpg", alt: "A vibrant coastal city with orange-roofed buildings terraced down to a deep blue river.", title: null, location: "Porto, Portugal", category: "places", ph: "wide" },
+  { src: "MEDIA/porto-coastal-city-river-portugal.jpg", alt: "A vibrant coastal city with orange-roofed buildings terraced down to a deep blue river.", title: null, location: "Porto, Portugal", category: "scenery", ph: "wide" },
 
   { src: "MEDIA/leather-cap-red-halo-portrait.jpg", alt: "A portrait of a person wearing a black leather cap obscuring their eyes, with a glowing red halo.", title: null, location: null, category: "people", ph: "tall" },
 
@@ -591,8 +592,6 @@
 
   { src: "MEDIA/woman-leather-harness-pink-mask.jpg", alt: "A woman in a black leather harness dress, a pink face mask, and pink heels posing inside a metal shipping container.", title: null, location: null, category: "people", ph: "wide" },
 
-  { src: "MEDIA/korean-pavilion-stone-pagoda-night-seoul.jpg", alt: "An ornate, multi-tiered Korean pavilion and stone pagoda illuminated at night.", title: null, location: "Seoul, South Korea", category: "places", ph: "tall" },
-
   { src: "MEDIA/dj-performing-colorful-party-tent.jpg", alt: "A smiling DJ in a red shirt performing behind a mixing board in a colorful tent.", title: null, location: null, category: "events", ph: "wide" },
 
   { src: "MEDIA/person-red-mask-metallic-structure.jpg", alt: "A person in a white mesh top and red mask leaning backwards over a metallic structure in an urban space.", title: null, location: null, category: "people", ph: "wide" },
@@ -601,7 +600,10 @@
 
   { src: "MEDIA/outdoor-party-crowd-bear-ears-hat.jpg", alt: "A crowd at an outdoor daytime party; a person wears a brown hat with bear ears.", title: null, location: null, category: "events", ph: "wide" },
 
-  { src: "MEDIA/fennec-fox-seoul-south-korea.jpg", alt: "A Fennec fox sitting on a wooden plank in moody lighting.", title: null, location: "Seoul, South Korea", category: "places", ph: "wide" }
+  { src: "MEDIA/fennec-fox-seoul-south-korea.jpg", alt: "A Fennec fox sitting on a wooden plank in moody lighting.", title: null, location: "Seoul, South Korea", category: "places", ph: "wide" },
+
+  // Tall vertical closer (Korea temple replaces former Amsterdam sail)
+  { src: "MEDIA/korean-pavilion-stone-pagoda-night-seoul.jpg", alt: "An ornate, multi-tiered Korean pavilion and stone pagoda illuminated at night.", title: null, location: "Seoul, South Korea", category: "places", ph: "tall" }
   ]
   };
 
