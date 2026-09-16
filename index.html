@@ -52,7 +52,7 @@
   img,video{ display:block; max-width:100%; }
   a{ color: inherit; text-decoration: none; }
   ul{ list-style:none; margin:0; padding:0; }
-  h1,h2,h3,p{ margin:0; }
+  h1,h2,h3,p,figure{ margin:0; }
   button{ font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 
   ::selection{ background: var(--c-accent); color: #fff; }
@@ -203,7 +203,7 @@
     grid-template-columns: repeat(1, 1fr);
     grid-auto-flow: dense;
     align-items: start;
-    gap: clamp(10px, 1.2vw, 20px);
+    gap: clamp(16px, 2vw, 32px);
   }
   @media (min-width: 720px){ 
     .work-grid{ grid-template-columns: repeat(2, 1fr); } 
@@ -548,71 +548,65 @@
   var IMAGE_CONFIG = {
     WORK_ITEMS: [
 
-  // Travel & Street — merged into Travel per current category structure
+  // Reordered for visual rhythm (tall/wide alternate, categories mixed, strong frames early).
+  // Categories: scenery | places | events | people
   // ph: "tall" = portrait/vertical (1 column), ph: "wide" = landscape/horizontal (spans 2 columns)
 
-  { src: "MEDIA/person-running-tree-fog-madeira-portugal.jpg", alt: "A silhouette of a person running up a hill toward a large two-trunk tree in dense fog.", title: null, location: "Madeira, Portugal", category: "travel", ph: "tall" },
-
-  { src: "MEDIA/sailing-ships-harbor-amsterdam-netherlands.jpg", alt: "A view of a harbor with tall sailing ships and small boats under a cloudy sky.", title: null, location: "Amsterdam, Netherlands", category: "travel", ph: "tall" },
-
-  { src: "MEDIA/fennec-fox-seoul-south-korea.jpg", alt: "A Fennec fox sitting on a wooden plank in moody lighting.", title: null, location: "Seoul, South Korea", category: "travel", ph: "wide" },
-
-  { src: "MEDIA/pink-hillside-building-tenerife-spain.jpg", alt: "A bright pink building on a hillside overlooking the ocean and mist.", title: null, location: "Tenerife, Spain", category: "travel", ph: "tall" },
-
-  { src: "MEDIA/seoul-street-overhead-wires-motorcyclist.jpg", alt: "A steep, vibrant street in Korea with a dense tangle of overhead wires and a motorcyclist.", title: null, location: "Seoul, South Korea", category: "travel", ph: "tall" },
-
-  { src: "MEDIA/mountain-village-coast-tenerife-spain.jpg", alt: "A white village nestled on a steep, rocky hillside overlooking a rugged, mountainous coast.", title: null, location: "Tenerife, Spain", category: "travel", ph: "wide" },
-
-  { src: "MEDIA/porto-coastal-city-river-portugal.jpg", alt: "A vibrant coastal city with orange-roofed buildings terraced down to a deep blue river.", title: null, location: "Porto, Portugal", category: "travel", ph: "wide" },
-
-  { src: "MEDIA/korean-pavilion-stone-pagoda-night-seoul.jpg", alt: "An ornate, multi-tiered Korean pavilion and stone pagoda illuminated at night.", title: null, location: "Seoul, South Korea", category: "travel", ph: "tall" },
-
-  { src: "MEDIA/neon-night-street-seoul-korea.jpg", alt: "A bustling nighttime street in Korea with bright neon signs and a clock tower structure.", title: null, location: "Seoul, South Korea", category: "travel", ph: "wide" },
-
-
-  // Events
-
-  { src: "MEDIA/vtss-b2b-sept-warsaw-club-dj.jpg", alt: "A DJ in a dark blazer and face mask performing on stage in a smoky club.", title: null, location: null, category: "events", ph: "wide" },
-
-  { src: "MEDIA/woman-pink-dress-moving-crowd.jpg", alt: "A woman in a shiny pink dress standing still in the middle of a moving, blurred crowd.", title: null, location: null, category: "events", ph: "wide" },
-
-  { src: "MEDIA/club-smoke-spotlights-decorative-masks.jpg", alt: "A dark club scene with spotlights shining through smoke and hanging decorative masks.", title: null, location: null, category: "events", ph: "wide" },
-
-  { src: "MEDIA/tomorrowland-crowd-projection-screen.jpg", alt: "A large crowd at a concert with a massive projection screen and a bright beam of light.", title: null, location: null, category: "events", ph: "tall" },
-
-  { src: "MEDIA/dj-performing-colorful-party-tent.jpg", alt: "A smiling DJ in a red shirt performing behind a mixing board in a colorful tent.", title: null, location: null, category: "events", ph: "wide" },
-
-  { src: "MEDIA/underground-party-dancing-green-braids.jpg", alt: "People dancing at an underground party, focusing on a person with green braided hair.", title: null, location: null, category: "events", ph: "wide" },
-
-  { src: "MEDIA/outdoor-party-crowd-bear-ears-hat.jpg", alt: "A crowd at an outdoor daytime party; a person wears a brown hat with bear ears.", title: null, location: null, category: "events", ph: "wide" },
-
-  { src: "MEDIA/red-lit-club-decorative-masks.jpg", alt: "A moody scene in a club with red lighting and hanging decorative masks illuminated by a spotlight.", title: null, location: null, category: "events", ph: "tall" },
-
-
-  // People — includes portraiture, no separate Portraits category
+  // Opener + early people so the orange warrior sits higher
+  { src: "MEDIA/person-running-tree-fog-madeira-portugal.jpg", alt: "A silhouette of a person running up a hill toward a large two-trunk tree in dense fog.", title: null, location: "Madeira, Portugal", category: "scenery", ph: "tall" },
 
   { src: "MEDIA/warrior-armor-sword-orange-smoke-portrait.jpg", alt: "A portrait of a person in warrior armor holding a large sword against a smoky orange background.", title: null, location: null, category: "people", ph: "wide" },
 
   { src: "MEDIA/woman-sunglasses-neon-portrait.jpg", alt: "A young woman wearing round sunglasses and a black crop top in a futuristic neon-lit setting.", title: null, location: null, category: "people", ph: "tall" },
 
+  { src: "MEDIA/club-smoke-spotlights-decorative-masks.jpg", alt: "A dark club scene with spotlights shining through smoke and hanging decorative masks.", title: null, location: null, category: "events", ph: "wide" },
+
+  { src: "MEDIA/pink-hillside-building-tenerife-spain.jpg", alt: "A bright pink building on a hillside overlooking the ocean and mist.", title: null, location: "Tenerife, Spain", category: "scenery", ph: "tall" },
+
   { src: "MEDIA/woman-yellow-ford-thunderbird-portrait.jpg", alt: "A woman in a shiny dress sitting on the ground next to a classic yellow Ford Thunderbird.", title: null, location: null, category: "people", ph: "wide" },
 
-  { src: "MEDIA/two-people-masks-escalator.jpg", alt: "Two young people wearing face masks and dark jackets riding an escalator in a bright station.", title: null, location: null, category: "people", ph: "tall" },
+  { src: "MEDIA/sailing-ships-harbor-amsterdam-netherlands.jpg", alt: "A view of a harbor with tall sailing ships and small boats under a cloudy sky.", title: null, location: "Amsterdam, Netherlands", category: "places", ph: "tall" },
+
+  { src: "MEDIA/red-lit-club-decorative-masks.jpg", alt: "A moody scene in a club with red lighting and hanging decorative masks illuminated by a spotlight.", title: null, location: null, category: "events", ph: "tall" },
+
+  { src: "MEDIA/porto-coastal-city-river-portugal.jpg", alt: "A vibrant coastal city with orange-roofed buildings terraced down to a deep blue river.", title: null, location: "Porto, Portugal", category: "places", ph: "wide" },
 
   { src: "MEDIA/leather-cap-red-halo-portrait.jpg", alt: "A portrait of a person wearing a black leather cap obscuring their eyes, with a glowing red halo.", title: null, location: null, category: "people", ph: "tall" },
 
-  { src: "MEDIA/woman-leather-harness-pink-mask.jpg", alt: "A woman in a black leather harness dress, a pink face mask, and pink heels posing inside a metal shipping container.", title: null, location: null, category: "people", ph: "wide" },
+  { src: "MEDIA/vtss-b2b-sept-warsaw-club-dj.jpg", alt: "A DJ in a dark blazer and face mask performing on stage in a smoky club.", title: null, location: null, category: "events", ph: "wide" },
+
+  { src: "MEDIA/mountain-village-coast-tenerife-spain.jpg", alt: "A white village nestled on a steep, rocky hillside overlooking a rugged, mountainous coast.", title: null, location: "Tenerife, Spain", category: "scenery", ph: "wide" },
+
+  { src: "MEDIA/two-people-masks-escalator.jpg", alt: "Two young people wearing face masks and dark jackets riding an escalator in a bright station.", title: null, location: null, category: "people", ph: "tall" },
+
+  { src: "MEDIA/tomorrowland-crowd-projection-screen.jpg", alt: "A large crowd at a concert with a massive projection screen and a bright beam of light.", title: null, location: null, category: "events", ph: "tall" },
+
+  { src: "MEDIA/seoul-street-overhead-wires-motorcyclist.jpg", alt: "A steep, vibrant street in Korea with a dense tangle of overhead wires and a motorcyclist.", title: null, location: "Seoul, South Korea", category: "places", ph: "tall" },
+
+  { src: "MEDIA/woman-pink-dress-moving-crowd.jpg", alt: "A woman in a shiny pink dress standing still in the middle of a moving, blurred crowd.", title: null, location: null, category: "events", ph: "wide" },
 
   { src: "MEDIA/person-red-puffer-glass-buildings.jpg", alt: "A view from behind of a person with grey hair in a bright red puffer jacket, standing between tall modern glass buildings.", title: null, location: null, category: "people", ph: "tall" },
 
-  { src: "MEDIA/person-red-mask-metallic-structure.jpg", alt: "A person in a white mesh top and red mask leaning backwards over a metallic structure in an urban space.", title: null, location: null, category: "people", ph: "wide" }
+  { src: "MEDIA/neon-night-street-seoul-korea.jpg", alt: "A bustling nighttime street in Korea with bright neon signs and a clock tower structure.", title: null, location: "Seoul, South Korea", category: "places", ph: "wide" },
+
+  { src: "MEDIA/woman-leather-harness-pink-mask.jpg", alt: "A woman in a black leather harness dress, a pink face mask, and pink heels posing inside a metal shipping container.", title: null, location: null, category: "people", ph: "wide" },
+
+  { src: "MEDIA/korean-pavilion-stone-pagoda-night-seoul.jpg", alt: "An ornate, multi-tiered Korean pavilion and stone pagoda illuminated at night.", title: null, location: "Seoul, South Korea", category: "places", ph: "tall" },
+
+  { src: "MEDIA/dj-performing-colorful-party-tent.jpg", alt: "A smiling DJ in a red shirt performing behind a mixing board in a colorful tent.", title: null, location: null, category: "events", ph: "wide" },
+
+  { src: "MEDIA/person-red-mask-metallic-structure.jpg", alt: "A person in a white mesh top and red mask leaning backwards over a metallic structure in an urban space.", title: null, location: null, category: "people", ph: "wide" },
+
+  { src: "MEDIA/underground-party-dancing-green-braids.jpg", alt: "People dancing at an underground party, focusing on a person with green braided hair.", title: null, location: null, category: "events", ph: "wide" },
+
+  { src: "MEDIA/outdoor-party-crowd-bear-ears-hat.jpg", alt: "A crowd at an outdoor daytime party; a person wears a brown hat with bear ears.", title: null, location: null, category: "events", ph: "wide" },
+
+  { src: "MEDIA/fennec-fox-seoul-south-korea.jpg", alt: "A Fennec fox sitting on a wooden plank in moody lighting.", title: null, location: "Seoul, South Korea", category: "places", ph: "wide" }
   ]
   };
 
-
-
-   var CATEGORY_ORDER  = ["all", "travel", "events", "people"];
-  var CATEGORY_LABELS = { all: "All", travel: "Travel", events: "Events", people: "People" };
+  var CATEGORY_ORDER  = ["all", "scenery", "places", "events", "people"];
+  var CATEGORY_LABELS = { all: "All", scenery: "Scenery", places: "Places", events: "Events", people: "People" };
 
   /* ---- placeholder generator ---- */
   function placeholderSrc(label, w, h, theme){
