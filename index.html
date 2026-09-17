@@ -511,11 +511,11 @@
 
   /* ============================================================
      VIDEO CONFIGURATION
-     The hero is the local MEDIA/heroemes.mp4 video (40MB, swapped in for the
-     original 65MB IGemes.mp4 for faster load). No photographic fallback is used.
+     The hero is the local MEDIA/heroemes.mp4 video 11mb. No photographic fallback is used.
      ============================================================ */
   var VIDEO_CONFIG = {
     HERO_VIDEO: "MEDIA/heroemes.mp4"
+
   };
 
   /* ============================================================
@@ -655,6 +655,7 @@
 
   // Browsers require the muted *property* (not only the attribute) for autoplay.
   heroVideo.muted = true;
+  heroVideo.autoplay = true;
   heroVideo.defaultMuted = true;
   heroVideo.setAttribute("playsinline", "");
   heroVideo.playsInline = true;
