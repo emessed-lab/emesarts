@@ -220,26 +220,6 @@
     display: inline-block; /* helps older browsers keep break-inside */
   }
   .w-item.is-hidden{ display:none; }
-  /* Filtered category views: CSS grid so column placement is deterministic
-     (multi-column masonry is kept for All). Order is set in JS per category. */
-  .work-grid.filter-grid{
-    column-count: 1;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(16px, 2vw, 32px);
-  }
-  @media (min-width: 720px){
-    .work-grid.filter-grid{ grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 1100px){
-    .work-grid.filter-grid{ grid-template-columns: repeat(3, 1fr); }
-  }
-  .work-grid.filter-grid .w-item{
-    display: block;
-    width: auto;
-    margin-bottom: 0;
-  }
-  .work-grid.filter-grid .w-item.is-hidden{ display: none; }
   .w-figure{ overflow:hidden; line-height:0; }
   .w-figure img{ width:100%; height:auto; display:block; transition: transform .7s var(--ease); }
   .w-item:hover .w-figure img{ transform: scale(1.02); }
@@ -577,43 +557,41 @@
 
   { src: "MEDIA/warrior-armor-sword-orange-smoke-portrait.jpg", alt: "A portrait of a person in warrior armor holding a large sword against a smoky orange background.", title: null, location: null, category: "people", ph: "wide" },
 
-
-
-  { src: "MEDIA/club-smoke-spotlights-decorative-masks.jpg", alt: "A dark club scene with spotlights shining through smoke and hanging decorative masks.", title: null, location: null, category: "events", ph: "wide" },
-
   { src: "MEDIA/woman-sunglasses-neon-portrait.jpg", alt: "A young woman wearing round sunglasses and a black crop top in a futuristic neon-lit setting.", title: null, location: null, category: "people", ph: "tall" },
 
   { src: "MEDIA/pink-hillside-building-tenerife-spain.jpg", alt: "A bright pink building on a hillside overlooking the ocean and mist.", title: null, location: "Tenerife, Spain", category: "scenery", ph: "tall" },
 
   { src: "MEDIA/woman-yellow-ford-thunderbird-portrait.jpg", alt: "A woman in a shiny dress sitting on the ground next to a classic yellow Ford Thunderbird.", title: null, location: null, category: "people", ph: "wide" },
 
-  { src: "MEDIA/woman-pink-dress-moving-crowd.jpg", alt: "A woman in a shiny pink dress standing still in the middle of a moving, blurred crowd.", title: null, location: null, category: "events", ph: "wide" },
-
-  { src: "MEDIA/red-lit-club-decorative-masks.jpg", alt: "A moody scene in a club with red lighting and hanging decorative masks illuminated by a spotlight.", title: null, location: null, category: "events", ph: "tall" },
-
   { src: "MEDIA/leather-cap-red-halo-portrait.jpg", alt: "A portrait of a person wearing a black leather cap obscuring their eyes, with a glowing red halo.", title: null, location: null, category: "people", ph: "tall" },
 
+  { src: "MEDIA/woman-pink-dress-moving-crowd.jpg", alt: "A woman in a shiny pink dress standing still in the middle of a moving, blurred crowd.", title: null, location: null, category: "events", ph: "wide" },
+
+  { src: "MEDIA/tomorrowland-crowd-projection-screen.jpg", alt: "A large crowd at a concert with a massive projection screen and a bright beam of light.", title: null, location: null, category: "events", ph: "tall" },
+
   { src: "MEDIA/vtss-b2b-sept-warsaw-club-dj.jpg", alt: "A DJ in a dark blazer and face mask performing on stage in a smoky club.", title: null, location: null, category: "events", ph: "wide" },
+
+  { src: "MEDIA/seoul-street-overhead-wires-motorcyclist.jpg", alt: "A steep, vibrant street in Korea with a dense tangle of overhead wires and a motorcyclist.", title: null, location: "Seoul, South Korea", category: "places", ph: "tall" },
 
   { src: "MEDIA/mountain-village-coast-tenerife-spain.jpg", alt: "A white village nestled on a steep, rocky hillside overlooking a rugged, mountainous coast.", title: null, location: "Tenerife, Spain", category: "scenery", ph: "wide" },
 
   { src: "MEDIA/two-people-masks-escalator.jpg", alt: "Two young people wearing face masks and dark jackets riding an escalator in a bright station.", title: null, location: null, category: "people", ph: "tall" },
 
-
   { src: "MEDIA/white-peacock-bird-standing-outdoor-on-ground.jpg", alt: "White peacock bird standing on ground outdoor.", title: null, location: null, category: "places", ph: "tall" },
-
-
-  { src: "MEDIA/outdoor-party-crowd-bear-ears-hat.jpg", alt: "A crowd at an outdoor daytime party; a person wears a brown hat with bear ears.", title: null, location: null, category: "events", ph: "wide" },
 
   { src: "MEDIA/fennec-fox-seoul-south-korea.jpg", alt: "A Fennec fox sitting on a wooden plank in moody lighting.", title: null, location: "Seoul, South Korea", category: "places", ph: "wide" },
 
-  { src: "MEDIA/tomorrowland-crowd-projection-screen.jpg", alt: "A large crowd at a concert with a massive projection screen and a bright beam of light.", title: null, location: null, category: "events", ph: "tall" },
+  { src: "MEDIA/outdoor-party-crowd-bear-ears-hat.jpg", alt: "A crowd at an outdoor daytime party; a person wears a brown hat with bear ears.", title: null, location: null, category: "events", ph: "wide" },
 
   { src: "MEDIA/porto-coastal-city-river-portugal.jpg", alt: "A vibrant coastal city with orange-roofed buildings terraced down to a deep blue river.", title: null, location: "Porto, Portugal", category: "scenery", ph: "wide" },
 
   { src: "MEDIA/neon-night-street-seoul-korea.jpg", alt: "A bustling nighttime street in Korea with bright neon signs and a clock tower structure.", title: null, location: "Seoul, South Korea", category: "places", ph: "wide" },
 
-  { src: "MEDIA/seoul-street-overhead-wires-motorcyclist.jpg", alt: "A steep, vibrant street in Korea with a dense tangle of overhead wires and a motorcyclist.", title: null, location: "Seoul, South Korea", category: "places", ph: "tall" },
+  { src: "MEDIA/red-lit-club-decorative-masks.jpg", alt: "A moody scene in a club with red lighting and hanging decorative masks illuminated by a spotlight.", title: null, location: null, category: "events", ph: "tall" },
+
+  { src: "MEDIA/tennis-court-illuminated-at-dusk-in-front-of-los-gigantes-tenerife.jpg", alt: "Coastal cliff town tennis court illuminated at dusk in front of Los Gigantes, Tenerife", title: null, location: "Tenerife, Spain", category: "scenery", ph: "wide" },
+
+ { src: "MEDIA/winter-in-lazienki-krolewskie-park-frozen-lake-with-ducks-in-Warsaw.jpg", alt: "Winter in Lazienki Krolewskie, partially frozen lake with ducks over it in Warsaw.jpg.", title: null, location: null, category: "places", ph: "tall" },
 
   { src: "MEDIA/person-red-mask-metallic-structure.jpg", alt: "A person in a white mesh top and red mask leaning backwards over a metallic structure in an urban space.", title: null, location: null, category: "people", ph: "wide" },
 
@@ -624,12 +602,10 @@
 
   { src: "MEDIA/woman-leather-harness-pink-mask.jpg", alt: "A woman in a black leather harness dress, a pink face mask, and pink heels posing inside a metal shipping container.", title: null, location: null, category: "people", ph: "wide" },
 
-  { src: "MEDIA/tennis-court-illuminated-at-dusk-in-front-of-los-gigantes-tenerife.jpg", alt: Coastal cliff town tennis court illuminated at dusk in front of Los Gigantes, Tenerife", title: null, location: null, category: "scenery", ph: "wide" },
 
-  { src: "MEDIA/alpine-landscape-with-church-in-misty-morning.jpg", alt: "Alpine landscape with church in misty morning in Bieszczady, Poland.jpg.", title: null, location: null, category: "scenery", ph: "tall" },
+  { src: "MEDIA/alpine-landscape-with-church-in-misty-morning.jpg", alt: "Alpine landscape with a church in misty morning light, Bieszczady, Poland", title: null, location: "Bieszczady, Poland", category: "scenery", ph: "tall" },
 
   { src: "MEDIA/dj-performing-colorful-party-tent.jpg", alt: "A smiling DJ in a red shirt performing behind a mixing board in a colorful tent.", title: null, location: null, category: "events", ph: "wide" },
-
 
 
   // Tall vertical closer (Korea temple replaces former Amsterdam sail)
@@ -787,21 +763,25 @@
   // Snapshot original All-view order (multi-column masonry rhythm).
   var originalOrder = Array.prototype.slice.call(workGrid.querySelectorAll(".w-item"));
 
-  // Filtered views use CSS grid (LTR). Positions: 1=col1, 2=col2, 3=col3, 4=col1 row2.
-  // Scenery: Tenerife pink → 3rd column. Places: neon → 2nd, temple → 3rd.
+  // Filtered views stay on CSS multi-column (same as All).
+  // Order aims for tall/wide rhythm so middle column can stack horizontals.
   var FILTER_SRC_ORDER = {
     scenery: [
       "MEDIA/person-running-tree-fog-madeira-portugal.jpg",
+      "MEDIA/mountain-village-coast-tenerife-spain.jpg",
       "MEDIA/porto-coastal-city-river-portugal.jpg",
       "MEDIA/pink-hillside-building-tenerife-spain.jpg",
-      "MEDIA/mountain-village-coast-tenerife-spain.jpg"
+      "MEDIA/tennis-court-illuminated-at-dusk-in-front-of-los-gigantes-tenerife.jpg",
+      "MEDIA/alpine-landscape-with-church-in-misty-morning.jpg"
     ],
     places: [
       "MEDIA/seoul-street-overhead-wires-motorcyclist.jpg",
+      "MEDIA/fennec-fox-seoul-south-korea.jpg",
       "MEDIA/neon-night-street-seoul-korea.jpg",
-      "MEDIA/korean-pavilion-stone-pagoda-night-seoul.jpg",
-      "MEDIA/fennec-fox-seoul-south-korea.jpg"
-    ]
+      "MEDIA/white-peacock-bird-standing-outdoor-on-ground.jpg",
+      "MEDIA/korean-pavilion-stone-pagoda-night-seoul.jpg"
+    ],
+
   };
 
   function applyFilter(cat){
@@ -816,12 +796,10 @@
     });
 
     if (cat === "all"){
-      workGrid.classList.remove("filter-grid");
       originalOrder.forEach(function(el){ workGrid.appendChild(el); });
       return;
     }
 
-    workGrid.classList.add("filter-grid");
     var order = FILTER_SRC_ORDER[cat];
     var visible = nodes.filter(function(el){ return !el.classList.contains("is-hidden"); });
     if (order && order.length){
