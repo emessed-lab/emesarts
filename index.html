@@ -220,29 +220,6 @@
     display: inline-block; /* helps older browsers keep break-inside */
   }
   .w-item.is-hidden{ display:none; }
-  /* Filtered category views: CSS grid so column placement is deterministic
-     (multi-column masonry is kept for All). Order is set in JS per category. */
-  .work-grid.filter-grid{
-    column-count: 1;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(16px, 2vw, 32px);
-  }
-  @media (min-width: 720px){
-    .work-grid.filter-grid{ grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 1100px){
-    .work-grid.filter-grid{ grid-template-columns: repeat(3, 1fr); }
-  }
-  .work-grid.filter-grid .w-item{
-    display: block;
-    width: auto;
-    margin-bottom: 0;
-  }
-  .work-grid.filter-grid .w-item.is-hidden{ display: none; }
-  .w-figure{ overflow:hidden; line-height:0; }
-  .w-figure img{ width:100%; height:auto; display:block; transition: transform .7s var(--ease); }
-  .w-item:hover .w-figure img{ transform: scale(1.02); }
 
   .w-caption{ padding: 12px 16px 14px; border-top: 1px solid var(--c-line-soft); background: #e5e5e7; }
   .w-caption.is-empty{ display:none; }
@@ -781,14 +758,14 @@
     scenery: [
       "MEDIA/person-running-tree-fog-madeira-portugal.jpg",
       "MEDIA/porto-coastal-city-river-portugal.jpg",
-      "MEDIA/mountain-village-coast-tenerife-spain.jpg"
       "MEDIA/pink-hillside-building-tenerife-spain.jpg",
+      "MEDIA/mountain-village-coast-tenerife-spain.jpg"
     ],
     places: [
       "MEDIA/seoul-street-overhead-wires-motorcyclist.jpg",
       "MEDIA/neon-night-street-seoul-korea.jpg",
-      "MEDIA/fennec-fox-seoul-south-korea.jpg"
       "MEDIA/korean-pavilion-stone-pagoda-night-seoul.jpg",
+      "MEDIA/fennec-fox-seoul-south-korea.jpg"
     ]
   };
 
