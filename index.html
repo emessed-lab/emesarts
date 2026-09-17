@@ -6,7 +6,6 @@
 <title>EMES Arts — Photography by Michal Siemczyk</title>
 <meta name="description" content="EMES Arts — Photography by Michal Siemczyk, finding pattern breakers, contrasts and moments of atmosphere in familiar and unexpected places.">
 <link rel="canonical" href="https://emesarts.com/">
-<link rel="preload" as="video" href="MEDIA/heroemes.mp4">
 
 <link rel="icon" type="image/png" sizes="32x32" href="MEDIA/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="MEDIA/favicon-180.png">
@@ -221,6 +220,26 @@
     display: inline-block; /* helps older browsers keep break-inside */
   }
   .w-item.is-hidden{ display:none; }
+  /* Filtered category views: CSS grid so column placement is deterministic
+     (multi-column masonry is kept for All). Order is set in JS per category. */
+  .work-grid.filter-grid{
+    column-count: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 2vw, 32px);
+  }
+  @media (min-width: 720px){
+    .work-grid.filter-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1100px){
+    .work-grid.filter-grid{ grid-template-columns: repeat(3, 1fr); }
+  }
+  .work-grid.filter-grid .w-item{
+    display: block;
+    width: auto;
+    margin-bottom: 0;
+  }
+  .work-grid.filter-grid .w-item.is-hidden{ display: none; }
   .w-figure{ overflow:hidden; line-height:0; }
   .w-figure img{ width:100%; height:auto; display:block; transition: transform .7s var(--ease); }
   .w-item:hover .w-figure img{ transform: scale(1.02); }
@@ -377,7 +396,7 @@
     <img src="MEDIA/emes-logo-black.png" alt="EMES Arts">
   </a>
 
-  <div class="nav-social" aria-label="Social">
+  <div class="nav-social" role="group" aria-label="Social">
     <a href="https://instagram.com/the_emes" target="_blank" rel="noopener" aria-label="Instagram">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
     </a>
@@ -418,7 +437,6 @@
   <section class="hero" id="top">
     <video class="hero-media" id="heroVideo" src="MEDIA/heroemes.mp4"
            autoplay muted loop playsinline preload="auto"
-           disablepictureinpicture disableremoteplayback
            aria-label="EMES Arts visual introduction"></video>
     <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -498,7 +516,7 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M15 5l-7 7 7 7"/></svg>
   </button>
   <div class="lightbox-figure">
-    <img id="lbImage" src="" alt="">
+    <img id="lbImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
     <div class="lightbox-cap" id="lbCaption"></div>
     <div class="lightbox-desc" id="lbDesc"></div>
   </div>
@@ -647,26 +665,37 @@
     );
   });
 
+  // Browsers require the muted *property* (not only the attribute) for autoplay.
+  heroVideo.muted = true;
+  heroVideo.defaultMuted = true;
+  heroVideo.setAttribute("playsinline", "");
+  heroVideo.playsInline = true;
+
+  function tryHeroPlay(){
+    var p = heroVideo.play();
+    if (p && typeof p.catch === "function") {
+      p.catch(function(){
+        var unlockPlay = function(){
+          heroVideo.muted = true;
+          heroVideo.play().catch(function(){});
+          document.removeEventListener("click", unlockPlay);
+          document.removeEventListener("touchstart", unlockPlay);
+          document.removeEventListener("keydown", unlockPlay);
+        };
+        document.addEventListener("click", unlockPlay, { once: true });
+        document.addEventListener("touchstart", unlockPlay, { once: true });
+        document.addEventListener("keydown", unlockPlay, { once: true });
+      });
+    }
+  }
+
   if (prefersReducedMotion){
     heroVideo.pause();
   } else {
-    // Try immediate autoplay (works on a web server and most browsers).
-    // If the browser blocks it (common when opening via file://), we retry
-    // on the very first user interaction — completely invisible to the visitor.
-    var playPromise = heroVideo.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(function() {
-        var unlockPlay = function() {
-          heroVideo.play().catch(function(){});
-          document.removeEventListener("click",      unlockPlay);
-          document.removeEventListener("touchstart", unlockPlay);
-          document.removeEventListener("keydown",    unlockPlay);
-        };
-        document.addEventListener("click",      unlockPlay, { once: true });
-        document.addEventListener("touchstart", unlockPlay, { once: true });
-        document.addEventListener("keydown",    unlockPlay, { once: true });
-      });
-    }
+    // Play as soon as enough data is buffered; also try immediately.
+    if (heroVideo.readyState >= 2) tryHeroPlay();
+    else heroVideo.addEventListener("loadeddata", tryHeroPlay, { once: true });
+    tryHeroPlay();
   }
 
   /* ---- Work grid + filter tabs ---- */
@@ -743,14 +772,56 @@
   });
   workGrid.appendChild(gridFrag);
 
+  // Snapshot original All-view order (multi-column masonry rhythm).
+  var originalOrder = Array.prototype.slice.call(workGrid.querySelectorAll(".w-item"));
+
+  // Filtered views use CSS grid (LTR). Positions: 1=col1, 2=col2, 3=col3, 4=col1 row2.
+  // Scenery: Tenerife pink → 3rd column. Places: neon → 2nd, temple → 3rd.
+  var FILTER_SRC_ORDER = {
+    scenery: [
+      "MEDIA/person-running-tree-fog-madeira-portugal.jpg",
+      "MEDIA/porto-coastal-city-river-portugal.jpg",
+      "MEDIA/pink-hillside-building-tenerife-spain.jpg",
+      "MEDIA/mountain-village-coast-tenerife-spain.jpg"
+    ],
+    places: [
+      "MEDIA/seoul-street-overhead-wires-motorcyclist.jpg",
+      "MEDIA/neon-night-street-seoul-korea.jpg",
+      "MEDIA/korean-pavilion-stone-pagoda-night-seoul.jpg",
+      "MEDIA/fennec-fox-seoul-south-korea.jpg"
+    ]
+  };
+
   function applyFilter(cat){
     workTabs.querySelectorAll(".work-tab").forEach(function(t){
       t.setAttribute("aria-pressed", t.dataset.cat === cat ? "true" : "false");
     });
-    workGrid.querySelectorAll(".w-item").forEach(function(el){
+
+    var nodes = Array.prototype.slice.call(workGrid.querySelectorAll(".w-item"));
+    nodes.forEach(function(el){
       var show = cat === "all" || el.dataset.cat === cat;
       el.classList.toggle("is-hidden", !show);
     });
+
+    if (cat === "all"){
+      workGrid.classList.remove("filter-grid");
+      originalOrder.forEach(function(el){ workGrid.appendChild(el); });
+      return;
+    }
+
+    workGrid.classList.add("filter-grid");
+    var order = FILTER_SRC_ORDER[cat];
+    var visible = nodes.filter(function(el){ return !el.classList.contains("is-hidden"); });
+    if (order && order.length){
+      visible.sort(function(a, b){
+        var srcA = (items[parseInt(a.dataset.index, 10)] || {}).src || "";
+        var srcB = (items[parseInt(b.dataset.index, 10)] || {}).src || "";
+        var ia = order.indexOf(srcA); if (ia < 0) ia = 999;
+        var ib = order.indexOf(srcB); if (ib < 0) ib = 999;
+        return ia - ib;
+      });
+    }
+    visible.forEach(function(el){ workGrid.appendChild(el); });
   }
   workTabs.addEventListener("click", function(e){
     var btn = e.target.closest(".work-tab");
