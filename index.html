@@ -248,8 +248,8 @@
     transition: opacity .25s var(--ease), visibility 0s linear .25s;
   }
   .lightbox.is-open{ opacity:1; visibility:visible; transition: opacity .25s var(--ease); }
-  .lightbox-figure{ max-width: min(92vw, 1200px); max-height: 84vh; text-align:center; }
-  .lightbox-figure img{ max-width:100%; max-height: 78vh; margin: 0 auto; object-fit: contain; }
+  .lightbox-figure{ max-width: 85vw; max-height: 85vh; text-align:center; }
+  .lightbox-figure img{ max-width: 85vw; max-height: 85vh; margin: 0 auto; object-fit: contain; }
   .lightbox-cap{ color: rgba(255,255,255,.82); font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; margin-top: 14px; }
   .lightbox-cap .lb-location{ color: rgba(255,255,255,.55); text-transform:none; letter-spacing: normal; margin-left: 8px; }
   .lightbox-desc{
@@ -511,11 +511,11 @@
 
   /* ============================================================
      VIDEO CONFIGURATION
-     The hero is the local MEDIA/heroemes.mp4 video 11mb. No photographic fallback is used.
+     The hero is the local MEDIA/heroemes.mp4 video (40MB, swapped in for the
+     original 65MB IGemes.mp4 for faster load). No photographic fallback is used.
      ============================================================ */
   var VIDEO_CONFIG = {
     HERO_VIDEO: "MEDIA/heroemes.mp4"
-
   };
 
   /* ============================================================
@@ -655,7 +655,6 @@
 
   // Browsers require the muted *property* (not only the attribute) for autoplay.
   heroVideo.muted = true;
-  heroVideo.autoplay = true;
   heroVideo.defaultMuted = true;
   heroVideo.setAttribute("playsinline", "");
   heroVideo.playsInline = true;
