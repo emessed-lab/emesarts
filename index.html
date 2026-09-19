@@ -145,20 +145,22 @@
   }
 
   /* ============================================================
-     HERO — dark video, full-width frame (no crop/zoom)
-     Video is 1024×590 landscape; section follows that aspect so the
-     entire frame stays visible at 100% width on every viewport.
+     HERO — full-width video, strong mobile height
+     Landscape source (≈1024×590). Full width always. On mobile we
+     use a tall viewport height + object-fit:cover so the block is
+     not a short strip; top/bottom crop is expected for portrait screens.
      ============================================================ */
   .hero{
     position: relative; width: 100%;
-    aspect-ratio: 1024 / 590;
-    height: auto;
-    max-height: 100svh;
+    height: 78svh; min-height: 440px; max-height: 100svh;
     overflow: hidden; background: #060708;
+  }
+  @media (min-width: 900px){
+    .hero{ height: 100svh; min-height: 560px; }
   }
   .hero-media{
     position:absolute; inset:0; width:100%; height:100%;
-    object-fit: contain; object-position: center;
+    object-fit: cover; object-position: center;
   }
   .hero-overlay{
     position:absolute; inset:0; pointer-events:none;
@@ -510,8 +512,8 @@
 
   /* ============================================================
      VIDEO CONFIGURATION
-     Hero: MEDIA/heroemes.mp4 (1024×590 landscape, full-width, no crop).
-     No photographic fallback.
+     Hero: MEDIA/heroemes.mp4 (≈1024×590 landscape). Full width;
+     cover fill on tall mobile hero. No photographic fallback.
      ============================================================ */
   var VIDEO_CONFIG = {
     HERO_VIDEO: "MEDIA/heroemes.mp4"
