@@ -145,21 +145,20 @@
   }
 
   /* ============================================================
-     HERO — dark video/image, wordmark logo overlay, minimal text
+     HERO — dark video, full-width frame (no crop/zoom)
+     Video is 1024×590 landscape; section follows that aspect so the
+     entire frame stays visible at 100% width on every viewport.
      ============================================================ */
   .hero{
     position: relative; width: 100%;
-    /* Full-bleed on desktop; slightly shorter on mobile so Work is reachable
-       without an extreme scroll. Still strong presence (~85–92svh). */
-    height: 92svh; min-height: 520px; max-height: 100svh;
+    aspect-ratio: 1024 / 590;
+    height: auto;
+    max-height: 100svh;
     overflow: hidden; background: #060708;
-  }
-  @media (min-width: 900px){
-    .hero{ height: 100svh; min-height: 600px; }
   }
   .hero-media{
     position:absolute; inset:0; width:100%; height:100%;
-    object-fit: cover; object-position: center;
+    object-fit: contain; object-position: center;
   }
   .hero-overlay{
     position:absolute; inset:0; pointer-events:none;
@@ -511,8 +510,8 @@
 
   /* ============================================================
      VIDEO CONFIGURATION
-     The hero is the local MEDIA/heroemes.mp4 video (40MB, swapped in for the
-     original 65MB IGemes.mp4 for faster load). No photographic fallback is used.
+     Hero: MEDIA/heroemes.mp4 (1024×590 landscape, full-width, no crop).
+     No photographic fallback.
      ============================================================ */
   var VIDEO_CONFIG = {
     HERO_VIDEO: "MEDIA/heroemes.mp4"
