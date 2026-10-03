@@ -7,7 +7,7 @@
 <meta name="description" content="EMES Arts — Photography by Michal Siemczyk, finding pattern breakers, contrasts and moments of atmosphere in familiar and unexpected places.">
 <link rel="canonical" href="https://emesarts.com/">
 
-<!-- Open Graph / social preview (v28.1) -->
+<!-- Open Graph / social preview (v28.2) -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://emesarts.com/">
 <meta property="og:title" content="EMES Arts — Photography by Michal Siemczyk">
@@ -242,6 +242,17 @@
   .w-figure img{ width:100%; height:auto; display:block; transition: transform .7s var(--ease); }
   .w-item:hover .w-figure img{ transform: scale(1.02); }
 
+  /* Light download discouragement — portfolio, lightbox, about portrait only.
+     Does not block screenshots or direct URL access; raises casual-save friction. */
+  .w-figure img,
+  .lightbox-figure img,
+  .about-visual > img{
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    user-drag: none;
+  }
+
   .w-caption{ padding: 12px 16px 14px; border-top: 1px solid var(--c-line-soft); background: #e5e5e7; }
   .w-caption.is-empty{ display:none; }
   .w-caption .w-title{
@@ -462,7 +473,7 @@
   <section id="about" aria-labelledby="about-heading">
     <div class="about-frame">
       <figure class="about-visual reveal">
-        <img src="MEDIA/portrait.jpg" alt="Portrait of Michal Siemczyk, EMES Arts" loading="lazy" width="2400" height="1600">
+        <img src="MEDIA/portrait.jpg" alt="Portrait of Michal Siemczyk, EMES Arts" loading="lazy" width="2400" height="1600" draggable="false">
         <div class="a-overlay" aria-hidden="true"></div>
         <div class="about-text">
           <h2 id="about-heading">Who is EMES?</h2>
@@ -514,7 +525,7 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M15 5l-7 7 7 7"/></svg>
   </button>
   <div class="lightbox-figure">
-    <img id="lbImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="">
+    <img id="lbImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" draggable="false">
     <div class="lightbox-cap" id="lbCaption"></div>
     <div class="lightbox-desc" id="lbDesc"></div>
   </div>
@@ -749,6 +760,7 @@
     }
     img.alt = item.alt || item.title || item.location || ("Work " + (i + 1));
     img.loading = "lazy";
+    img.draggable = false;
     figure.appendChild(img);
 
     var openBtn = document.createElement("button");
@@ -970,6 +982,29 @@
   document.addEventListener("keydown", function(e){
     if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true"){ closeMenu(); toggle.focus(); }
   });
+
+  /* ============================================================
+     LIGHT IMAGE DOWNLOAD DISCOURAGEMENT
+     Portfolio grid, lightbox, and about portrait only.
+     Blocks casual right-click save and drag-to-desktop.
+     Does not prevent screenshots or direct URL access.
+     ============================================================ */
+  (function protectPortfolioImages(){
+    function isProtectedTarget(el){
+      if (!el || el.tagName !== "IMG") return false;
+      return !!(
+        el.closest(".w-figure") ||
+        el.closest(".lightbox-figure") ||
+        el.closest(".about-visual")
+      );
+    }
+    document.addEventListener("contextmenu", function(e){
+      if (isProtectedTarget(e.target)) e.preventDefault();
+    });
+    document.addEventListener("dragstart", function(e){
+      if (isProtectedTarget(e.target)) e.preventDefault();
+    });
+  })();
 
   /* ============================================================
      SCROLL REVEAL

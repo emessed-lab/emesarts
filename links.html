@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Links — EMES Arts</title>
+<meta name="description" content="EMES Arts link hub — portfolio, Behance projects, Instagram, and contact for photography by Michal Siemczyk.">
+<link rel="canonical" href="https://emesarts.com/links.html">
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://emesarts.com/links.html">
+<meta property="og:title" content="EMES Arts — Links">
+<meta property="og:description" content="Portfolio, Behance projects, Instagram, and contact for photography by Michal Siemczyk.">
+<meta property="og:image" content="https://emesarts.com/MEDIA/og-preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="EMES Arts — Photography by Michal Siemczyk">
+<meta property="og:site_name" content="EMES Arts">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EMES Arts — Links">
+<meta name="twitter:description" content="Portfolio, Behance projects, Instagram, and contact for photography by Michal Siemczyk.">
+<meta name="twitter:image" content="https://emesarts.com/MEDIA/og-preview.jpg">
+
+<link rel="icon" type="image/png" sizes="32x32" href="MEDIA/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="MEDIA/favicon-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     TOKENS — fixed light, matches emesarts.com (v27/v28.1) exactly.
+     Dark-mode toggle removed: gallery-white background suits the
+     photography better and matches the main site's own fixed-light
+     chrome (dark tones live in the photos, not the UI).
+     ============================================================ */
+  :root {
+    --c-bg:        #ffffff;
+    --c-bg-elev:   #f4f4f5;
+    --c-ink:       #141516;
+    --c-ink-dim:   #55585c;
+    --c-ink-faint: #8a8d90;
+    --c-line:      #e7e7e8;
+    --c-line-soft: #efefef;
+    --c-accent:    #33474f;
+    --c-btn-bg:    #141516;
+    --c-btn-ink:   #ffffff;
+    --c-btn-hover: #2a2d30;
+    --c-card-shadow: 0 8px 28px -18px rgba(0,0,0,.28);
+    --c-avatar-ring: #e7e7e8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { background: var(--c-bg); scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--c-bg);
+    color: var(--c-ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+  ::selection { background: var(--c-accent); color: #fff; }
+  :focus-visible { outline: 1px solid var(--c-accent); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  .page {
+    width: 100%;
+    max-width: 420px;
+    padding: 28px 20px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+
+  .top-bar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+  .back-home {
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--c-ink-dim);
+    padding: 6px 2px;
+    border-bottom: 1px solid transparent;
+    transition: color .25s cubic-bezier(.22,.61,.36,1), border-color .25s cubic-bezier(.22,.61,.36,1);
+  }
+  .back-home:hover, .back-home:focus-visible {
+    color: var(--c-ink);
+    border-bottom-color: var(--c-ink-faint);
+  }
+
+  .avatar-wrap { position: relative; width: 112px; height: 112px; margin-bottom: 18px; }
+  .avatar {
+    width: 112px; height: 112px; border-radius: 50%;
+    object-fit: cover; object-position: center 28%;
+    border: 3px solid var(--c-avatar-ring);
+    box-shadow: var(--c-card-shadow);
+    background: var(--c-bg-elev);
+  }
+
+  .name {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 400; font-size: 1.55rem; letter-spacing: -0.01em;
+    text-align: center; margin: 0 0 4px;
+  }
+  .handle { font-size: .85rem; color: var(--c-ink-dim); letter-spacing: .04em; margin: 0 0 14px; text-align: center; }
+  .bio { font-size: .92rem; color: var(--c-ink-dim); text-align: center; max-width: 34ch; margin: 0 0 28px; line-height: 1.6; }
+
+  .section-label {
+    width: 100%;
+    font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--c-ink-faint);
+    margin: 22px 0 10px;
+  }
+  .section-label:first-of-type { margin-top: 0; }
+
+  .links { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+
+  .link-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; min-height: 52px; padding: 14px 20px; border-radius: 14px;
+    background: var(--c-btn-bg); color: var(--c-btn-ink);
+    font-size: .9rem; font-weight: 600; letter-spacing: .03em; text-align: center;
+    border: 1px solid transparent; box-shadow: var(--c-card-shadow);
+    transition: background .25s cubic-bezier(.22,.61,.36,1), transform .2s cubic-bezier(.22,.61,.36,1), box-shadow .25s cubic-bezier(.22,.61,.36,1);
+  }
+  .link-btn:hover, .link-btn:focus-visible {
+    background: var(--c-btn-hover); transform: translateY(-2px);
+    box-shadow: 0 12px 28px -14px rgba(0,0,0,.35);
+  }
+  .link-btn:active { transform: translateY(0); }
+  .link-btn svg { width: 18px; height: 18px; flex-shrink: 0; opacity: .9; }
+
+  .link-btn.is-secondary {
+    background: var(--c-bg-elev); color: var(--c-ink);
+    border-color: var(--c-line); box-shadow: none;
+  }
+  .link-btn.is-secondary:hover, .link-btn.is-secondary:focus-visible {
+    background: var(--c-line-soft); border-color: var(--c-ink-faint);
+  }
+
+  /* Behance project buttons — distinguished from primary site link
+     without introducing a third visual style */
+  .link-btn.is-project {
+    background: var(--c-bg); color: var(--c-ink);
+    border-color: var(--c-line); box-shadow: none;
+  }
+  .link-btn.is-project:hover, .link-btn.is-project:focus-visible {
+    border-color: var(--c-ink-faint); background: var(--c-bg-elev);
+  }
+  .link-btn .proj-name { font-weight: 600; }
+  .link-btn .proj-meta {
+    font-weight: 400; color: var(--c-ink-faint); letter-spacing: normal;
+    text-transform: none; font-size: .78rem;
+  }
+
+  .socials {
+    display: flex; gap: 18px; align-items: center; justify-content: center;
+    margin: 28px 0 36px;
+  }
+  .socials a {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--c-ink-dim); background: var(--c-bg-elev);
+    border: 1px solid var(--c-line);
+    transition: color .25s cubic-bezier(.22,.61,.36,1), border-color .25s cubic-bezier(.22,.61,.36,1), transform .2s cubic-bezier(.22,.61,.36,1), background .25s cubic-bezier(.22,.61,.36,1);
+  }
+  .socials a:hover, .socials a:focus-visible {
+    color: var(--c-ink); border-color: var(--c-ink-faint); transform: translateY(-2px);
+  }
+  .socials svg { width: 18px; height: 18px; display: block; }
+  .socials .be-icon svg { width: 20px; height: 20px; }
+
+  .page-foot {
+    margin-top: auto; text-align: center;
+    font-size: .75rem; color: var(--c-ink-faint); letter-spacing: .02em;
+  }
+  .page-foot a {
+    color: var(--c-ink-dim); border-bottom: 1px solid transparent;
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .page-foot a:hover, .page-foot a:focus-visible { color: var(--c-ink); border-bottom-color: var(--c-ink-faint); }
+
+  @media (min-width: 480px) {
+    .page { padding: 36px 24px 56px; }
+    .avatar-wrap, .avatar { width: 124px; height: 124px; }
+    .name { font-size: 1.7rem; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="top-bar">
+      <a class="back-home" href="https://emesarts.com/">← EMES Arts</a>
+    </div>
+
+    <div class="avatar-wrap">
+      <img class="avatar" src="MEDIA/portrait.jpg" alt="Portrait of Michal Siemczyk, EMES Arts" width="240" height="240" decoding="async">
+    </div>
+
+    <h1 class="name">EMES Arts</h1>
+    <p class="handle">Michal Siemczyk · Photography</p>
+    <p class="bio">
+      Street, night, travel, and events. Finding pattern breakers, contrasts, and moments of atmosphere in familiar and unexpected places.
+    </p>
+
+    <nav class="links" aria-label="Featured links">
+      <a class="link-btn" href="https://emesarts.com/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        emesarts.com
+      </a>
+      <button type="button" class="link-btn is-secondary" id="qrToggle" aria-expanded="false" aria-controls="qrPanel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM19 14h2v2h-2zM14 19h2v2h-2zM19 19h2v2h-2z"/></svg>
+        Show QR to scan
+      </button>
+      <div id="qrPanel" style="display:none; text-align:center; padding:20px 0 4px;">
+        <div id="qrCode" style="display:inline-block; padding:12px; background:#fff; border:1px solid var(--c-line); border-radius:12px;"></div>
+        <p style="font-size:.74rem; color:var(--c-ink-faint); margin-top:10px;">Scan to open this page</p>
+      </div>
+    </nav>
+
+    <div class="section-label">Selected projects — Behance</div>
+    <nav class="links" aria-label="Behance projects">
+      <a class="link-btn is-project" href="https://www.behance.net/gallery/244296251/Soul-Roar" target="_blank" rel="noopener">
+        <!-- Behance icon: Font Awesome Free v6.7.2 by @fontawesome - fontawesome.com. License - fontawesome.com/license/free -->
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.7 10.1c1.3-.6 2-1.6 2-3.1 0-2.9-2.2-3.7-4.7-3.7H0v14.8h7.2c2.7 0 5.2-1.3 5.2-4.3 0-1.9-.9-3.2-2.7-3.7zM3.3 5.7h3.1c1.2 0 2.2.3 2.2 1.7 0 1.3-.8 1.8-2 1.8H3.3V5.7zm3.5 9.8H3.3v-4.1h3.5c1.4 0 2.3.6 2.3 2.1 0 1.5-1.1 2-2.4 2zM24 12.8c0-3.2-1.9-5.8-5.2-5.8-3.3 0-5.5 2.5-5.5 5.7 0 3.3 2.1 5.6 5.5 5.6 2.6 0 4.2-1.2 5-3.6h-2.8c-.3.9-1.4 1.4-2.3 1.4-1.7 0-2.6-1-2.6-2.7h7.7c0-.2.1-.4.1-.6zM16.3 11.5c.1-1.4 1-2.3 2.4-2.3 1.5 0 2.2.9 2.3 2.3h-4.7zM15.7 3.9h6v1.5h-6V3.9z"/></svg>
+        <span class="proj-name">Soul Roar</span>
+      </a>
+      <a class="link-btn is-project" href="https://www.behance.net/gallery/106059437/Fort-Open-Air-Ultimate-20" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.7 10.1c1.3-.6 2-1.6 2-3.1 0-2.9-2.2-3.7-4.7-3.7H0v14.8h7.2c2.7 0 5.2-1.3 5.2-4.3 0-1.9-.9-3.2-2.7-3.7zM3.3 5.7h3.1c1.2 0 2.2.3 2.2 1.7 0 1.3-.8 1.8-2 1.8H3.3V5.7zm3.5 9.8H3.3v-4.1h3.5c1.4 0 2.3.6 2.3 2.1 0 1.5-1.1 2-2.4 2zM24 12.8c0-3.2-1.9-5.8-5.2-5.8-3.3 0-5.5 2.5-5.5 5.7 0 3.3 2.1 5.6 5.5 5.6 2.6 0 4.2-1.2 5-3.6h-2.8c-.3.9-1.4 1.4-2.3 1.4-1.7 0-2.6-1-2.6-2.7h7.7c0-.2.1-.4.1-.6zM16.3 11.5c.1-1.4 1-2.3 2.4-2.3 1.5 0 2.2.9 2.3 2.3h-4.7zM15.7 3.9h6v1.5h-6V3.9z"/></svg>
+        <span class="proj-name">Fort Open Air</span>
+      </a>
+      <a class="link-btn is-project" href="https://www.behance.net/gallery/120352491/REAL-RIGIDSTORE" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.7 10.1c1.3-.6 2-1.6 2-3.1 0-2.9-2.2-3.7-4.7-3.7H0v14.8h7.2c2.7 0 5.2-1.3 5.2-4.3 0-1.9-.9-3.2-2.7-3.7zM3.3 5.7h3.1c1.2 0 2.2.3 2.2 1.7 0 1.3-.8 1.8-2 1.8H3.3V5.7zm3.5 9.8H3.3v-4.1h3.5c1.4 0 2.3.6 2.3 2.1 0 1.5-1.1 2-2.4 2zM24 12.8c0-3.2-1.9-5.8-5.2-5.8-3.3 0-5.5 2.5-5.5 5.7 0 3.3 2.1 5.6 5.5 5.6 2.6 0 4.2-1.2 5-3.6h-2.8c-.3.9-1.4 1.4-2.3 1.4-1.7 0-2.6-1-2.6-2.7h7.7c0-.2.1-.4.1-.6zM16.3 11.5c.1-1.4 1-2.3 2.4-2.3 1.5 0 2.2.9 2.3 2.3h-4.7zM15.7 3.9h6v1.5h-6V3.9z"/></svg>
+        <span class="proj-name">REAL RIGIDSTORE</span>
+      </a>
+    </nav>
+
+    <div class="section-label">More</div>
+    <nav class="links" aria-label="More links">
+      <a class="link-btn is-secondary" href="https://emesarts.com/#about">
+        Who is EMES?
+      </a>
+      <a class="link-btn is-secondary" href="https://instagram.com/the_emes" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+      <a class="link-btn is-secondary" href="mailto:connect@emesarts.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        Email · connect@emesarts.com
+      </a>
+    </nav>
+
+    <div class="socials" role="group" aria-label="Social profiles">
+      <a href="https://instagram.com/the_emes" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="be-icon" href="https://www.behance.net/emesarts" target="_blank" rel="noopener" aria-label="Behance profile">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.7 10.1c1.3-.6 2-1.6 2-3.1 0-2.9-2.2-3.7-4.7-3.7H0v14.8h7.2c2.7 0 5.2-1.3 5.2-4.3 0-1.9-.9-3.2-2.7-3.7zM3.3 5.7h3.1c1.2 0 2.2.3 2.2 1.7 0 1.3-.8 1.8-2 1.8H3.3V5.7zm3.5 9.8H3.3v-4.1h3.5c1.4 0 2.3.6 2.3 2.1 0 1.5-1.1 2-2.4 2zM24 12.8c0-3.2-1.9-5.8-5.2-5.8-3.3 0-5.5 2.5-5.5 5.7 0 3.3 2.1 5.6 5.5 5.6 2.6 0 4.2-1.2 5-3.6h-2.8c-.3.9-1.4 1.4-2.3 1.4-1.7 0-2.6-1-2.6-2.7h7.7c0-.2.1-.4.1-.6zM16.3 11.5c.1-1.4 1-2.3 2.4-2.3 1.5 0 2.2.9 2.3 2.3h-4.7zM15.7 3.9h6v1.5h-6V3.9z"/></svg>
+      </a>
+      <a href="mailto:connect@emesarts.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </a>
+    </div>
+
+    <footer class="page-foot">
+      <p>EMES Arts · The Hague</p>
+      <p><a href="https://emesarts.com/">emesarts.com</a></p>
+    </footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+  (function () {
+    "use strict";
+    var toggle = document.getElementById("qrToggle");
+    var panel = document.getElementById("qrPanel");
+    var mount = document.getElementById("qrCode");
+    var rendered = false;
+
+    if (!toggle || !panel || !mount) return;
+
+    toggle.addEventListener("click", function () {
+      var willShow = panel.style.display === "none";
+      panel.style.display = willShow ? "block" : "none";
+      toggle.setAttribute("aria-expanded", willShow ? "true" : "false");
+
+      if (willShow && !rendered && typeof QRCode !== "undefined") {
+        try {
+          new QRCode(mount, {
+            text: window.location.href.split("#")[0].split("?")[0],
+            width: 168,
+            height: 168,
+            colorDark: "#141516",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+          });
+          rendered = true;
+        } catch (e) {
+          mount.textContent = "QR unavailable — check connection.";
+        }
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
